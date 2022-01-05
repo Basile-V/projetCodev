@@ -1,0 +1,40 @@
+#header{
+  width: 100%;
+  display: flex;
+  align-content: space-between;
+  height: 10%;
+  background-color: #26437E;
+}
+
+#headerLeft{
+  width: 70%;
+  display: flex;
+  margin: auto;
+}
+
+#headerRight{
+  width: 30%;
+  display: flex;
+}
+
+#headerRight div{
+  width: 50%;
+  border-left: solid 1px #A6C4DE;
+  text-align: center;
+}
+
+#headerLeft button {
+  margin: 8px 8px 8px 0;
+}
+
+#headerLeft form, #headerLeft mat-icon, #headerLeft button{
+  margin: auto 10px;
+}
+
+#headerRight div p{
+  margin: revert;
+}
+
+p, mat-icon{
+  color: #A6C4DE;
+}
