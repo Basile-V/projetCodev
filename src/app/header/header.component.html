@@ -1,0 +1,21 @@
+<div>
+  <form class="adresse-form">
+    <input type="text"
+           placeholder="Search for a street"
+           [formControl]="control"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
+        {{street}}
+      </mat-option>
+    </mat-autocomplete>
+  </form>
+  <mat-icon>highlight_off</mat-icon>
+  <button mat-button>Activer la géolocalisation</button>
+</div>
+<div>
+  Maps
+</div>
+<div>
+  Mon véhicule
+</div>
