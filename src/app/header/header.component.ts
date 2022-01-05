@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {RequeteHTTPService} from '../requete-http.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit {
   filteredStreets: Observable<string[]> | undefined;
 
 
-  constructor() { }
+  constructor(private service: RequeteHTTPService) { }
 
   ngOnInit() {
     this.filteredStreets = this.control.valueChanges.pipe(
