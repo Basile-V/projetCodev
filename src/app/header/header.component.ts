@@ -10,6 +10,7 @@ import {RequeteHTTPService} from '../requete-http.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  closestStations = [];
   control = new FormControl();
   streets: string[] = ['Champs-Élysées', 'Lombard Street', 'Abbey Road', 'Fifth Avenue'];
   filteredStreets: Observable<string[]> | undefined;
@@ -31,5 +32,11 @@ export class HeaderComponent implements OnInit {
 
   private _normalizeValue(value: string): string {
     return value.toLowerCase().replace(/\s/g, '');
+  }
+
+  getLocation(){
+    this.service.getLocationService().then(resp=>{
+      this.closestStations = this.service.getStations(resp.lat, resp.lng);
+    })
   }
 }
