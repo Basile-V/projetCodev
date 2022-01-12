@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,13 @@ export class RequeteHTTPService {
       stations = data.data.stations;
     });
     return stations;
+  }
+
+  async getLatLong(postCode: string){
+    var infos;
+    this.http.get<any>('http://localhost:8080/address?zip_code=' + postCode).subscribe(data => {
+      infos = data[0];
+    });
+    return infos;
   }
 }

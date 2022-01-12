@@ -21,18 +21,19 @@
   width: 50%;
   border-left: solid 1px #A6C4DE;
   text-align: center;
+  display: flex;
 }
 
 #headerLeft button {
   margin: 8px 8px 8px 0;
 }
 
-#headerLeft form, #headerLeft mat-icon, #headerLeft button{
+#headerLeft p, #headerLeft mat-icon, #headerLeft button{
   margin: auto 10px;
 }
 
 #headerRight div p{
-  margin: revert;
+  margin: auto;
 }
 
 p, mat-icon{

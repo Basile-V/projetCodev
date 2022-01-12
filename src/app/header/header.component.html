@@ -1,16 +1,12 @@
 <div id="header">
   <div id="headerLeft">
-    <form class="adresse-form">
-      <input type="text"
-             placeholder="Search for a street"
-             [formControl]="control"
-             [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
-          {{street}}
-        </mat-option>
-      </mat-autocomplete>
-    </form>
+    <p class="adresse-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Code postal</mat-label>
+        <input matInput placeholder="Placeholder" [(ngModel)]="postcode" (change)="getPostcode()">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </p>
     <mat-icon>highlight_off</mat-icon>
     <button mat-button (click)="getLocation()">Activer la géolocalisation</button>
   </div>
