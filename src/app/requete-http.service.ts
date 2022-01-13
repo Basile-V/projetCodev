@@ -18,7 +18,7 @@ export class RequeteHTTPService {
   }
 
   getStations(latitude: string, longitude: string){
-    var stations: never[] = [];
+    let stations: never[] = [];
     this.http.get<any>('https://api.waqi.info/mapq2/nearest?geo=1/' + latitude + '/' + longitude).subscribe(data => {
       stations = data.data.stations;
     });
@@ -26,7 +26,7 @@ export class RequeteHTTPService {
   }
 
   async getLatLong(postCode: string){
-    var infos;
+    let infos;
     this.http.get<any>('http://localhost:8080/address?zip_code=' + postCode).subscribe(data => {
       infos = data[0];
     });
