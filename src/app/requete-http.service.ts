@@ -18,18 +18,10 @@ export class RequeteHTTPService {
   }
 
   getStations(latitude: string, longitude: string){
-    var stations: never[] = [];
-    this.http.get<any>('https://api.waqi.info/mapq2/nearest?geo=1/' + latitude + '/' + longitude).subscribe(data => {
-      stations = data.data.stations;
-    });
-    return stations;
+    return this.http.get<any>('https://api.waqi.info/mapq2/nearest?geo=1/' + latitude + '/' + longitude);
   }
 
   async getLatLong(postCode: string){
-    var infos;
-    this.http.get<any>('http://localhost:8080/address?zip_code=' + postCode).subscribe(data => {
-      infos = data[0];
-    });
-    return infos;
+    return this.http.get<any>('http://localhost:8080/address?zip_code=' + postCode);
   }
 }

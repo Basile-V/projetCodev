@@ -21,14 +21,25 @@ export class HeaderComponent implements OnInit {
 
   getLocation(){
     this.service.getLocationService().then(resp=>{
-      this.closestStations = this.service.getStations(resp.lat, resp.lng);
+      this.service.getStations(resp.lat, resp.lng).subscribe(stations => {
+        this.closestStations = stations.data.stations;
+      });
     })
   }
 
   async getPostcode() {
     if (this.postcode.length == 5) {
-      var res = await this.service.getLatLong(this.postcode);
-      console.log(res);
+      (await this.service.getLatLong(this.postcode)).subscribe(data => {
+        if(data.length > 0){
+          this.service.getStations(data[0].latitude, data[0].longitude).subscribe(stations => {
+            this.closestStations = stations.data.stations;
+          });
+        }
+      });
     }
+  }
+
+  getClosestStation(){
+    console.log(this.closestStations);
   }
 }
