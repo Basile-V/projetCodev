@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {RequeteHTTPService} from '../requete-http.service';
+import {Router} from '@angular/router';
+import {RequeteHTTPService} from '../../requete-http.service';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +13,18 @@ import {RequeteHTTPService} from '../requete-http.service';
 export class HeaderComponent implements OnInit {
   closestStations = [];
   postcode = "";
-
+  connected: boolean;
+  connexion: string;
 
   constructor(private service: RequeteHTTPService) { }
 
   ngOnInit() {
+//    this.connected = window.localStorage.getItem('code').length > 0;
+//    this.connected ? this.connexion = "/header" : this.connexion = "/deconnexion";
+  }
+
+  deconnexion(): void {
+    window.localStorage.removeItem('code');
   }
 
   getLocation(){
