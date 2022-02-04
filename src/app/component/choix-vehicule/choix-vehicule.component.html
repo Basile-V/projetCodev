@@ -1,1 +1,22 @@
-<p>choix-vehicule works!</p>
+<html>
+<app-header></app-header>
+<body>
+<div class="main">
+  <form id="search-form" name="gs" method="submit" role="search" [formGroup]="choixVehiculeForm"
+        (ngSubmit)="enregistrerVehicule()">
+    <span class="custom-dropdown big">
+      <select matInput id="vehicule" type="text" [formControl]="vehiculeControl" required="required">
+        <option *ngFor="vehiculeTable" [value]="vehiculeTable.pop().modele">
+          {{vehiculeTable.pop().modele}}
+      </option>
+        <option value="">test</option>
+      </select>
+    </span>
+  </form>
+  <br/>
+  <br/>
+  <input type="checkbox" name="favori" value="true"><label>Ajouter en tant que favoris ?</label>
+  <button class="main-button">Valider</button>
+</div>
+</body>
+</html>

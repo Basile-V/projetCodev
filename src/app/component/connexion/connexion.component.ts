@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {Form, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ConnexionService} from "../../services/connexion.service";
-import {Utilisateur} from "../../models/Utilisateur";
+import {Utilisateur} from "../../models/utilisateur";
 
 @Component({
   selector: 'app-connexion',
