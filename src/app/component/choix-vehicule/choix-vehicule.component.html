@@ -6,17 +6,17 @@
         (ngSubmit)="enregistrerVehicule()">
     <span class="custom-dropdown big">
       <select matInput id="vehicule" type="text" [formControl]="vehiculeControl" required="required">
-        <option *ngFor="vehiculeTable" [value]="vehiculeTable.pop().modele">
-          {{vehiculeTable.pop().modele}}
+         <option value="" disabled selected>Selectionner votre véhicule</option>
+        <option *ngFor="let str of modele_utac" [value]="str.toString()">
+          {{str.toString()}}
       </option>
-        <option value="">test</option>
       </select>
     </span>
+    <br/>
+    <br/>
+    <input type="checkbox" name="favori" value="true"><label>Ajouter en tant que favoris ?</label>
+    <button class="main-button">Valider</button>
   </form>
-  <br/>
-  <br/>
-  <input type="checkbox" name="favori" value="true"><label>Ajouter en tant que favoris ?</label>
-  <button class="main-button">Valider</button>
 </div>
 </body>
 </html>

@@ -1,9 +1,6 @@
 export class Vehicule {
-
-  marque?: string;
+  marque?: string | null;
   modele?: string;
-  carburant?: string;
-  annee?: string;
-
-
+  carburant?: string | null;
+  annee?: string | null;
 }

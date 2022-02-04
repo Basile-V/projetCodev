@@ -39,6 +39,9 @@ export class MonVehiculeComponent implements OnInit {
       reponse=>{
         console.log('Recherche en cours...');
         localStorage.setItem('ListeVehicule', JSON.stringify(reponse));
+        localStorage.setItem('Marque', this.marqueControl.value);
+        localStorage.setItem('Carburant', this.carbuControl.value);
+        localStorage.setItem('Annee', this.anneeControl.value);
         this.router.navigate(['/choixVehicule'])
       },
       err => {

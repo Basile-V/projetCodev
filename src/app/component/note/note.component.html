@@ -1,1 +1,72 @@
-<p>note works!</p>
+<!DOCTYPE html>
+<html>
+<app-header></app-header>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body class="w3-light-grey">
+
+<div class="w3-main">
+  <div class="w3-container">
+    <h5>Votre véhicule</h5>
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+      <tr>
+        <td>Marque</td>
+        <td>Audi</td>
+      </tr>
+      <tr>
+        <td>Modèle</td>
+        <td>A3</td>
+      </tr>
+      <tr>
+        <td>Carburant</td>
+        <td>Diesel</td>
+      </tr>
+      <tr>
+        <td>Année</td>
+        <td>2004</td>
+      </tr>
+    </table><br>
+    <button class="w3-button w3-dark-grey" onclick="self.location.href='' +
+     'http://localhost:4200/monVehicule'">Changer de véhicule  <i class="fa fa-arrow-right"></i></button>
+  </div>
+
+  <div class="w3-container">
+    <br/>
+    <div class="w3-row">
+      <div class="w3-col m10 w3-container">
+        <h4>Notre conseiller</h4>
+        <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Get the Sidebar
+  var mySidebar = document.getElementById("mySidebar");
+
+  // Get the DIV with overlay effect
+  var overlayBg = document.getElementById("myOverlay");
+
+  // Toggle between showing and hiding the sidebar, and add overlay effect
+  function w3_open() {
+    if (mySidebar.style.display === 'block') {
+      mySidebar.style.display = 'none';
+      overlayBg.style.display = "none";
+    } else {
+      mySidebar.style.display = 'block';
+      overlayBg.style.display = "block";
+    }
+  }
+
+  // Close the sidebar with the close button
+  function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+  }
+</script>
+
+</body>
+</html>

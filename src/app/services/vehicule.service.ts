@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Vehicule} from "../models/vehicule";
 import {Observable} from "rxjs";
+import {environment} from "../../environments/environment";
+
+const ENDPOINT = environment.endpoint;
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +37,17 @@ export class VehiculeService {
       'Access-Control-Allow-Header': '*'
     });
     return this.httpVehicule.get(this.vehiculeUrl, { params: params })
+  }
+
+  ajouterVehicule(unVehicule: Vehicule): Observable<any>{
+    this.vehiculeUrl = ENDPOINT + 'cars';
+    let httpHeaders = new HttpHeaders({
+      'Content-Type' : 'application/json',
+      'Cache-Control': 'no-cache'
+    });
+    let options = {
+      headers: httpHeaders
+    };
+    return this.httpVehicule.post<Vehicule>(this.vehiculeUrl, JSON.stringify(unVehicule), options);
   }
 }
