@@ -7,6 +7,7 @@ import {ChoixVehiculeComponent} from "./component/choix-vehicule/choix-vehicule.
 import {QualiteAirComponent} from "./component/qualite-air/qualite-air.component";
 import {StationsComponent} from "./component/stations/stations.component";
 import {HeaderComponent} from "./component/header/header.component";
+import {NoteComponent} from "./component/note/note.component";
 
 
 const routes : Routes =  [
@@ -19,6 +20,7 @@ const routes : Routes =  [
   { path: 'choixVehicule', component: ChoixVehiculeComponent },
   { path: 'qualiteAir', component: QualiteAirComponent },
   { path: 'stations', component: StationsComponent},
+  { path: 'note', component: NoteComponent},
 ];
 
 @NgModule({
