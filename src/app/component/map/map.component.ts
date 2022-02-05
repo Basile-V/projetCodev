@@ -37,6 +37,7 @@ export class MapComponent implements AfterViewInit {
     });
 
     tiles.addTo(this.map);
+    this.addStation(50, 2);
   }
 
   constructor() { }
