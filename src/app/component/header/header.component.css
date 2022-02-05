@@ -39,3 +39,13 @@
 p, mat-icon{
   color: #A6C4DE;
 }
+
+a:visited{
+  color: #A6C4DE;
+  text-decoration: none;
+}
+
+
+a{
+  text-decoration: none;
+}
