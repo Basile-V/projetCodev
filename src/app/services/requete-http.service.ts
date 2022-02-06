@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from "rxjs";
-
+import {environment} from "../../environments/environment";
+const    ENDPOINT = environment.endpoint;
 @Injectable({
   providedIn: 'root'
 })
@@ -18,10 +18,10 @@ export class RequeteHTTPService {
   }
 
   getStations(latitude: string, longitude: string){
-    return this.http.get<any>('https://api.waqi.info/mapq2/nearest?geo=1/' + latitude + '/' + longitude);
+    return this.http.get<any>(ENDPOINT + 'pollution/nearestStations?latitude=' + latitude + '&longitude=' + longitude);
   }
 
   async getLatLong(postCode: string){
-    return this.http.get<any>('http://localhost:8080/address?zip_code=' + postCode);
+    return this.http.get<any>(ENDPOINT + 'address?zip_code=' + postCode);
   }
 }

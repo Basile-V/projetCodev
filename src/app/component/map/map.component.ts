@@ -1,6 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 // @ts-ignore
 import * as L from 'leaflet';
+import {newArray} from "@angular/compiler/src/util";
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -24,6 +25,8 @@ L.Marker.prototype.options.icon = iconDefault;
 })
 export class MapComponent implements AfterViewInit {
   private map: any;
+  closestStations = new Array();
+  markerId = new Map();
 
   private initMap(): void {
     this.map = L.map('map', {
@@ -37,7 +40,6 @@ export class MapComponent implements AfterViewInit {
     });
 
     tiles.addTo(this.map);
-    this.addStation(50, 2);
   }
 
   constructor() { }
@@ -46,8 +48,25 @@ export class MapComponent implements AfterViewInit {
     this.initMap();
   }
 
-  addStation(lat: any, lon: any){
+  addStation(lat: any, lon: any, name: string, id: number){
     const marker = L.marker([lat, lon]).addTo(this.map);
+    marker.bindPopup(name);
+    // marker.on('click', this.printStat);
     marker.addTo(this.map);
+    // this.markerId.set(marker._leaflet_id, id);
+    // console.log(marker._leaflet_id, id);
   }
+
+  childToParent($event: Array<any>) {
+    this.closestStations = $event;
+    for (let i = 0; i < this.closestStations.length; i++){
+      this.addStation(this.closestStations[i].latitude, this.closestStations[i].longitude, this.closestStations[i].address, this.closestStations[i].id);
+    }
+  }
+
+
+  // printStat(e: any){
+  //   console.log(e.target._leaflet_id);
+  //   this.markerId.get(e.target._leaflet_id);
+  // }
 }

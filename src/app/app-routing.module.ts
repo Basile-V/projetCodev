@@ -12,8 +12,7 @@ import {NoteComponent} from "./component/note/note.component";
 
 const routes : Routes =  [
 
-  { path: '', redirectTo : '/header', pathMatch: 'full'  },
-  { path: 'header', component: HeaderComponent },
+  { path: '', redirectTo : '/map', pathMatch: 'full'  },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'monVehicule', component: MonVehiculeComponent },
   { path: 'map', component: MapComponent},

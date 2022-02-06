@@ -3,7 +3,7 @@
     <p class="adresse-form">
       <mat-form-field appearance="outline">
         <input matInput placeholder="Code postal" [(ngModel)]="postcode" (change)="getPostcode()">
-        <mat-icon matSuffix>search</mat-icon>
+        <mat-icon matSuffix (click)="getPostcode()">search</mat-icon>
       </mat-form-field>
     </p>
     <mat-icon (click)="getClosestStation()">highlight_off</mat-icon>

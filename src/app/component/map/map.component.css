@@ -3,11 +3,20 @@
 }
 
 .map-frame {
-  border: 2px solid black;
-  height: 80%;
+  height: 100%;
+  width: 50%;
 }
 
 #map{
   position: relative;
   height: 100%;
+}
+
+section{
+  height: 92%;
+  display: flex;
+}
+
+div#stats{
+  width: 50%;
 }
