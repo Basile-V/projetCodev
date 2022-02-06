@@ -1,0 +1,19 @@
+body{
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Jost', sans-serif;
+  background: linear-gradient(to bottom, #A6C4DE, #4A86D3, #A6C4DE);
+}
+
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
+label{
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  font-family: 'Jost', sans-serif;
+}

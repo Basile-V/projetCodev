@@ -50,4 +50,8 @@ export class MonVehiculeComponent implements OnInit {
       }
     );
   }
+
+  vehiculeFavoris():void{
+    this.router.navigate(['/vehiculeFavoris'])
+  }
 }

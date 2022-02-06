@@ -21,6 +21,7 @@ import {ConnexionService} from "./services/connexion.service";
 import { NoteComponent } from './component/note/note.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { ErreurVehiculeComponent } from './component/mesErreurs/erreurVehicule/erreur-vehicule/erreur-vehicule.component';
+import { VehiculeFavorisComponent } from './component/vehicule-favoris/vehicule-favoris.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ErreurVehiculeComponent } from './component/mesErreurs/erreurVehicule/e
     StationsComponent,
     NoteComponent,
     ErreurVehiculeComponent,
+    VehiculeFavorisComponent,
   ],
     imports: [
         BrowserModule,

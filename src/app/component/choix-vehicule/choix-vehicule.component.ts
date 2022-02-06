@@ -74,7 +74,7 @@ export class ChoixVehiculeComponent implements OnInit {
         this.router.navigate(['/note'])
       },
       err => {
-        alert('erreurVehicule dans ajout du véhicule');
+        alert('Erreur dans ajout du véhicule');
       }
     );
   }

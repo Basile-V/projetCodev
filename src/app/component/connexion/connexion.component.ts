@@ -56,7 +56,7 @@ export class ConnexionComponent implements OnInit {
           alert('Connexion réussi');
           this.router.navigate(['/map']);
         }
-      }
+      },
     );
   }
 
