@@ -1,6 +1,45 @@
 <app-header (childToParent)=childToParent($event)></app-header>
 <section>
   <div id="stats">
+    <div *ngIf="closestStations.length > 0">
+      <h2>Liste des stations proche :</h2>
+      <ul>
+        <li *ngFor="let station of closestStations">{{ station.address }} <mat-icon (click)="printStat(station.id)">expand_more</mat-icon></li>
+      </ul>
+    </div>
+    <div *ngIf='station && station["values"]'>
+      <h3>Station : {{station["city"]}}</h3>
+      <h4>Valeurs :</h4>
+      <ul>
+        <li *ngIf='station["values"]["dew"]["v"]'>Dew : {{station["values"]["dew"]["v"]}} </li>
+        <li *ngIf='station["values"]["h"]["v"]'>h : {{station["values"]["h"]["v"]}} </li>
+        <li *ngIf='station["values"]["no2"]["v"]'>no2 : {{station["values"]["no2"]["v"]}} </li>
+        <li *ngIf='station["values"]["p"]["v"]'>p : {{station["values"]["p"]["v"]}} </li>
+<!--        <li *ngIf='station["values"]["pm10"]["v"]'>pm10 : {{station["values"]["pm10"]["v"]}} </li>-->
+<!--        <li *ngIf='station["values"]["pm25"]["v"]'>pm25 : {{station["values"]["pm25"]["v"]}} </li>-->
+        <li *ngIf='station["values"]["t"]["v"]'>t : {{station["values"]["t"]["v"]}} </li>
+        <li *ngIf='station["values"]["w"]["v"]'>w : {{station["values"]["w"]["v"]}} </li>
+      </ul>
+<!--      <h4>Derniers jours :</h4>-->
+<!--      <table *ngIf='station["nextDays"]'>-->
+<!--        <thead>-->
+<!--        <tr *ngIf='station["nextDays"]["o3"]'>-->
+<!--          <th>Jours :</th><th *ngFor='let jour of station["nextDays"]["o3"]' colspan="3">{{jour["day"]}}</th>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <th>Chiffres :</th><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <ng-template ngFor let-gaz [ngForOf]='station["nextDays"]'>-->
+<!--          <tr>-->
+<!--            <th>{{station["nextDays"].key}}</th><ng-template ngFor let-item [ngForOf]='gaz'><td>{{item["avg"]}}</td><td>{{item["min"]}}</td><td>{{item["max"]}}</td></ng-template>-->
+<!--          </tr>-->
+<!--        </ng-template>-->
+
+<!--        </tbody>-->
+<!--      </table>-->
+    </div>
   </div>
   <div class="map-container">
     <div class="map-frame">

@@ -21,6 +21,10 @@ export class RequeteHTTPService {
     return this.http.get<any>(ENDPOINT + 'pollution/nearestStations?latitude=' + latitude + '&longitude=' + longitude);
   }
 
+  getPollution(id: number){
+    return this.http.get<any>(ENDPOINT + 'pollution/' + id);
+  }
+
   async getLatLong(postCode: string){
     return this.http.get<any>(ENDPOINT + 'address?zip_code=' + postCode);
   }

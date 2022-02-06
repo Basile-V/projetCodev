@@ -19,6 +19,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {ConnexionService} from "./services/connexion.service";
 import { NoteComponent } from './component/note/note.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NoteComponent } from './component/note/note.component';
     ReactiveFormsModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [ConnexionService],
   bootstrap: [AppComponent]

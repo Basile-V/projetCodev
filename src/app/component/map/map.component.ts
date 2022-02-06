@@ -2,6 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 // @ts-ignore
 import * as L from 'leaflet';
 import {newArray} from "@angular/compiler/src/util";
+import {RequeteHTTPService} from "../../services/requete-http.service";
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -26,9 +27,11 @@ L.Marker.prototype.options.icon = iconDefault;
 export class MapComponent implements AfterViewInit {
   private map: any;
   closestStations = new Array();
-  markerId = new Map();
+  stationSelected: any;
+  station: any;
+  sept: Array<number>;
 
-  private initMap(): void {
+  initMap(): void {
     this.map = L.map('map', {
       center: [ 46.833, 2.333 ],
       zoom: 6
@@ -42,31 +45,31 @@ export class MapComponent implements AfterViewInit {
     tiles.addTo(this.map);
   }
 
-  constructor() { }
+  constructor(private service: RequeteHTTPService) { }
 
   ngAfterViewInit(): void {
     this.initMap();
+    this.sept = new Array(7);
   }
 
   addStation(lat: any, lon: any, name: string, id: number){
     const marker = L.marker([lat, lon]).addTo(this.map);
     marker.bindPopup(name);
-    // marker.on('click', this.printStat);
     marker.addTo(this.map);
-    // this.markerId.set(marker._leaflet_id, id);
-    // console.log(marker._leaflet_id, id);
   }
 
   childToParent($event: Array<any>) {
     this.closestStations = $event;
+    console.log(this.closestStations);
     for (let i = 0; i < this.closestStations.length; i++){
       this.addStation(this.closestStations[i].latitude, this.closestStations[i].longitude, this.closestStations[i].address, this.closestStations[i].id);
     }
   }
 
-
-  // printStat(e: any){
-  //   console.log(e.target._leaflet_id);
-  //   this.markerId.get(e.target._leaflet_id);
-  // }
+  printStat(id: number){
+    this.service.getPollution(id).subscribe(data => {
+      this.station = data;
+      console.log(data);
+    });
+  }
 }
