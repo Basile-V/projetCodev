@@ -19,6 +19,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {ConnexionService} from "./services/connexion.service";
 import { NoteComponent } from './component/note/note.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import { ErreurVehiculeComponent } from './component/mesErreurs/erreurVehicule/erreur-vehicule/erreur-vehicule.component';
 
 @NgModule({
   declarations: [
@@ -31,20 +33,22 @@ import { NoteComponent } from './component/note/note.component';
     ChoixVehiculeComponent,
     StationsComponent,
     NoteComponent,
+    ErreurVehiculeComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    MatAutocompleteModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        CommonModule,
+        MatAutocompleteModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCheckboxModule
+    ],
   providers: [ConnexionService],
   bootstrap: [AppComponent]
 })

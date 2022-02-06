@@ -22,29 +22,41 @@ export class ChoixVehiculeComponent implements OnInit {
   constructor(private unVS: VehiculeService, private router: Router) { }
 
   vehiculeControl: FormControl = new FormControl('', Validators.required);
+  favoriControl: FormControl = new FormControl('', Validators.required);
 
   ngOnInit(): void {
-    this.containerStyle = 'container';
-    this.choixVehiculeForm = new FormGroup({
-      vehicule: this.vehiculeControl,
-    });
     this.marque=localStorage.getItem('Marque');
     this.carburant=localStorage.getItem('Carburant');
     this.annee=localStorage.getItem('Annee');
-    localStorage.removeItem('Marque');
-    localStorage.removeItem('Carburant');
-    localStorage.removeItem('Annee');
 
-    this.modele_utac = new Array();
-    this.vehiculeTable = JSON.parse(<string>localStorage.getItem('ListeVehicule'));
-    localStorage.removeItem('ListeVehicule');
-    // @ts-ignore
-    for(let i=0; i< this.vehiculeTable['facet_groups'][0]['facets'][0]['count']; i++){
+    if(this.marque!=null && this.carburant != null && this.annee != null){
+      this.containerStyle = 'container';
+      this.choixVehiculeForm = new FormGroup({
+        vehicule: this.vehiculeControl,
+        favoris: this.favoriControl,
+      });
+      localStorage.removeItem('Marque');
+      localStorage.removeItem('Carburant');
+      localStorage.removeItem('Annee');
+
+      this.modele_utac = new Array();
+      this.vehiculeTable = JSON.parse(<string>localStorage.getItem('ListeVehicule'));
+      localStorage.removeItem('ListeVehicule');
       // @ts-ignore
-      let v = this.vehiculeTable['records'][i]['fields']['modele_utac'];
-      this.modele_utac.push(v);
+      if(this.vehiculeTable['nhits']==0){
+        this.router.navigate(['/erreurVehicule'])
+      }else{
+        // @ts-ignore
+        for(let i=0; i< this.vehiculeTable['facet_groups'][0]['facets'][0]['count']; i++){
+          // @ts-ignore
+          let v = this.vehiculeTable['records'][i]['fields']['designation_commerciale'];
+          this.modele_utac.push(v);
+        }
+      }
+    }else{
+      this.router.navigate(['/monVehicule'])
     }
-    console.log(this.modele_utac);
+
   }
 
   enregistrerVehicule(): void{
@@ -62,7 +74,7 @@ export class ChoixVehiculeComponent implements OnInit {
         this.router.navigate(['/note'])
       },
       err => {
-        alert('Erreur dans ajout du véhicule');
+        alert('erreurVehicule dans ajout du véhicule');
       }
     );
   }
