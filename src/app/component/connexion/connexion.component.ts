@@ -15,7 +15,6 @@ export class ConnexionComponent implements OnInit {
   private errorMessage: string = '';
   loginForm: FormGroup;
   connexionForm: FormGroup;
-  code: String ='';
 
   constructor(private unCS: ConnexionService, private router: Router) { }
 
@@ -48,17 +47,16 @@ export class ConnexionComponent implements OnInit {
     console.log(unUt);
     this.unCS.getLogin(unUt).subscribe(
       reponse  => {
-        this.code = reponse;
-        console.log(reponse);
-        alert('Connexion réussi');
-        this.router.navigate(['/header']);
-
+        if(reponse==null){
+          console.log('erreur connexion');
+          alert('Erreur de connexion!');
+        }else{
+          localStorage.setItem('codeUser',reponse['code']);
+          localStorage.setItem('idUser',reponse['id']);
+          alert('Connexion réussi');
+          this.router.navigate(['/map']);
+        }
       },
-      err => {
-        this.errorMessage = err.error.message;
-        console.log('Erreur');
-        alert('Erreur d\'appel!' + this.errorMessage);
-      }
     );
   }
 
@@ -72,16 +70,15 @@ export class ConnexionComponent implements OnInit {
     unUt.password = this.passwordControl.value;
     this.unCS.inscription(unUt).subscribe(
       reponse  => {
-        console.log(reponse);
+        localStorage.setItem('codeUser',reponse['code']);
+        localStorage.setItem('idUser',reponse['id']);
         alert('Inscription réussie !');
-        this.router.navigate(['/header']);
-        window.localStorage.setItem('code', reponse);
-
+        this.router.navigate(['/map']);
       },
       err => {
         this.errorMessage = err.error.message;
-        console.log("Erreur");
-        alert('Erreur d\'appel!' + this.errorMessage);
+        console.log("erreur inscription");
+        alert('Message erreur: ' + this.errorMessage);
       }
     );
   }

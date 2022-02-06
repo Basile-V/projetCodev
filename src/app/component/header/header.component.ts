@@ -1,5 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {RequeteHTTPService} from '../../services/requete-http.service';
+import {Router} from "@angular/router";
+import {UtilisateurService} from "../../services/utilisateur.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -10,19 +13,37 @@ export class HeaderComponent implements OnInit {
   @Output() childToParent = new EventEmitter<Array<any>>();
   closestStations = [];
   postcode = "";
-  connected: boolean;
-  connexion: string;
+  connectedCode: string | null;
+  userId: string | null;
 
 
-  constructor(private service: RequeteHTTPService) { }
+  constructor(private service: RequeteHTTPService, private utilisateur: UtilisateurService, private router: Router) { }
 
   ngOnInit() {
-//    this.connected = window.localStorage.getItem('code').length > 0;
-//    this.connected ? this.connexion = "/header" : this.connexion = "/deconnexion";
+    this.connectedCode = localStorage.getItem('codeUser');
+    this.userId = localStorage.getItem('idUser');
+    if(this.connectedCode==null){
+      this.router.navigate(['/connexion']);
+    }
   }
 
   deconnexion(): void {
-    window.localStorage.removeItem('code');
+    localStorage.removeItem('codeUser');
+    localStorage.removeItem('idUser');
+    this.router.navigate(['/connexion']);
+  }
+
+  supprimerCompte(){
+    let code = localStorage.getItem('codeUser');
+    let id = localStorage.getItem('idUser');
+    this.utilisateur.supprimerCompte(code,id).subscribe(
+      reponse =>{
+        alert("Suppression réussite");
+      }
+    );
+    localStorage.removeItem('codeUser');
+    localStorage.removeItem('idUser');
+    this.router.navigate(['/connexion']);
   }
 
   getLocation(){

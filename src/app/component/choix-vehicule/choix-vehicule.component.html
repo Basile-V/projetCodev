@@ -14,7 +14,14 @@
     </span>
     <br/>
     <br/>
-    <input type="checkbox" name="favori" value="true"><label>Ajouter en tant que favoris ?</label>
+<!--    <span class="custom-dropdown big">
+      <select matInput id="favori" type="text" [formControl]="favoriControl" required="required">
+        <option value="" disabled selected>Ajouter au favoris</option>
+        <option value="0">Non</option>
+        <option value="1">Oui</option>
+      </select>
+    </span>
+    -->
     <button class="main-button">Valider</button>
   </form>
 </div>

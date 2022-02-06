@@ -1,5 +1,5 @@
 <div id="header">
-  <div id="headerLeft">
+  <div id="headerLeft" *ngIf="connectedCode">
     <p class="adresse-form">
       <mat-form-field appearance="outline">
         <input matInput placeholder="Code postal" [(ngModel)]="postcode" (change)="getPostcode()">
@@ -9,17 +9,18 @@
     <mat-icon (click)="getClosestStation()">highlight_off</mat-icon>
     <button mat-button (click)="getLocation()">Activer la géolocalisation</button>
   </div>
-  <div id="headerRight">
+  <div id="headerRight" *ngIf="connectedCode">
     <div class="map">
-      <p><a href="map">Acceuil</a></p>
+      <p><a href="map">Accueil</a></p>
     </div>
     <div class="vehicule">
       <p><a href="/monVehicule">Mon véhicule</a></p>
     </div>
-    <!--      <div class="connexion" *ngIf="connected"> -->
-    <div class="connexion">
-<!--      <p><a href="/deconnexion">Deconnexion</a></p> -->
-      <p><a href="/connexion">Connexion</a></p>
+    <div class="supprimer">
+      <p><a href="#" (click)="supprimerCompte()">Supprimer mon compte</a></p>
+    </div>
+    <div class="deconnexion">
+      <p><a href="#" (click)="deconnexion()">Deconnexion</a></p>
     </div>
   </div>
 </div>

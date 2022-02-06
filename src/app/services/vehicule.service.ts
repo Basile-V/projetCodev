@@ -31,11 +31,6 @@ export class VehiculeService {
     params = params.append('facet', 'carburant');
     this.vehiculeUrl = 'https://public.opendatasoft.com/api/records/1.0/search';
 
-    let httpHeaders = new HttpHeaders({
-      'Content-Type' : 'application/json',
-      'Cache-Control': 'no-cache',
-      'Access-Control-Allow-Header': '*'
-    });
     return this.httpVehicule.get(this.vehiculeUrl, { params: params })
   }
 
@@ -50,4 +45,11 @@ export class VehiculeService {
     };
     return this.httpVehicule.post<Vehicule>(this.vehiculeUrl, JSON.stringify(unVehicule), options);
   }
+
+  getMesVehicules(code: string | null, id: string | null): Observable<any>{
+    this.vehiculeUrl = ENDPOINT + 'cars/user/'+id+'/'+code;
+    console.log()
+    return this.httpVehicule.get<Vehicule>(this.vehiculeUrl);
+  }
+
 }

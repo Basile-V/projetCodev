@@ -8,11 +8,13 @@ import {QualiteAirComponent} from "./component/qualite-air/qualite-air.component
 import {StationsComponent} from "./component/stations/stations.component";
 import {HeaderComponent} from "./component/header/header.component";
 import {NoteComponent} from "./component/note/note.component";
+import {ErreurVehiculeComponent} from "./component/mesErreurs/erreurVehicule/erreur-vehicule/erreur-vehicule.component";
+import {VehiculeFavorisComponent} from "./component/vehicule-favoris/vehicule-favoris.component";
 
 
 const routes : Routes =  [
 
-  { path: '', redirectTo : '/map', pathMatch: 'full'  },
+  { path: '', redirectTo : '/connexion', pathMatch: 'full'  },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'monVehicule', component: MonVehiculeComponent },
   { path: 'map', component: MapComponent},
@@ -20,6 +22,8 @@ const routes : Routes =  [
   { path: 'qualiteAir', component: QualiteAirComponent },
   { path: 'stations', component: StationsComponent},
   { path: 'note', component: NoteComponent},
+  { path: 'erreurVehicule', component: ErreurVehiculeComponent},
+  { path: 'vehiculeFavoris', component: VehiculeFavorisComponent},
 ];
 
 @NgModule({
