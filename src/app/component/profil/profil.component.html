@@ -1,0 +1,45 @@
+<app-header></app-header>
+<section>
+  <h1>Mon profil</h1>
+  <div id="voitureFav">
+    <h2>Mes voitures favorites :</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Marque</th><th>Modèle</th><th>Carburant</th><th>Année</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let car of favoriteCars">
+        <td>{{car.modele}}</td>
+        <td>{{car.marque}}</td>
+        <td>{{car.carburant}}</td>
+        <td>{{car.annee}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="palceFav">
+    <h2>Mes places favorites :</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Adress</th><th>Latitude</th><th>Longitude</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let place of favoritePlaces">
+        <td>{{place.address}}</td>
+        <td>{{place.latitude}}</td>
+        <td>{{place.longitude}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <button mat-button id="delete" (click)="supprimerCompte()">Supprimer le compte</button>
+    <p><a href="#" (click)="deconnexion()">Deconnexion</a></p>
+  </div>
+</section>
+
+

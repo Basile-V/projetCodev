@@ -25,7 +25,7 @@ import { VehiculeFavorisComponent } from './component/vehicule-favoris/vehicule-
 import {MatSelectModule} from "@angular/material/select";
 import {MatOption, MatOptionModule} from "@angular/material/core";
 import {MatSliderModule} from "@angular/material/slider";
-import { ProfilComponent } from './component/choix-vehicule/profil/profil.component';
+import { ProfilComponent } from './component/profil/profil.component';
 
 @NgModule({
   declarations: [

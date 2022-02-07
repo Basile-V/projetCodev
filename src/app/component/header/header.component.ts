@@ -27,25 +27,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  deconnexion(): void {
-    localStorage.removeItem('codeUser');
-    localStorage.removeItem('idUser');
-    this.router.navigate(['/connexion']);
-  }
-
-  supprimerCompte(){
-    let code = localStorage.getItem('codeUser');
-    let id = localStorage.getItem('idUser');
-    this.utilisateur.supprimerCompte(code,id).subscribe(
-      reponse =>{
-        alert("Suppression réussite");
-      }
-    );
-    localStorage.removeItem('codeUser');
-    localStorage.removeItem('idUser');
-    this.router.navigate(['/connexion']);
-  }
-
   getLocation(){
     this.service.getLocationService().then(resp=>{
       this.service.getStations(resp.lat, resp.lng).subscribe(stations => {

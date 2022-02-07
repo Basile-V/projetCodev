@@ -28,4 +28,12 @@ export class RequeteHTTPService {
   async getLatLong(postCode: string){
     return this.http.get<any>(ENDPOINT + 'address?zip_code=' + postCode);
   }
+
+  getFavoriteCars(id: string, code: string){
+    return this.http.get<any>(ENDPOINT + "cars/favorite/" + id + "?code=" + code);
+  }
+
+  getFavoritePlaces(id: string, code: string){
+    return this.http.get<any>(ENDPOINT + "places/favorite/" + id + "?code=" + code);
+  }
 }

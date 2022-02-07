@@ -102,4 +102,8 @@ export class MapComponent implements AfterViewInit {
     // @ts-ignore
     return "moyenne : " + val[selected]["avg"] + ", min : " + val[selected]["min"] + ", max : " + val[selected]["max"];
   }
+
+  // add place
+
+  // add userPlace
 }

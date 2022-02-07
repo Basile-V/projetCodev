@@ -10,6 +10,7 @@ import {HeaderComponent} from "./component/header/header.component";
 import {NoteComponent} from "./component/note/note.component";
 import {ErreurVehiculeComponent} from "./component/mesErreurs/erreurVehicule/erreur-vehicule/erreur-vehicule.component";
 import {VehiculeFavorisComponent} from "./component/vehicule-favoris/vehicule-favoris.component";
+import {ProfilComponent} from "./component/profil/profil.component";
 
 
 const routes : Routes =  [
@@ -21,6 +22,7 @@ const routes : Routes =  [
   { path: 'choixVehicule', component: ChoixVehiculeComponent },
   { path: 'qualiteAir', component: QualiteAirComponent },
   { path: 'stations', component: StationsComponent},
+  { path: 'profil', component: ProfilComponent},
   { path: 'note', component: NoteComponent},
   { path: 'erreurVehicule', component: ErreurVehiculeComponent},
   { path: 'vehiculeFavoris', component: VehiculeFavorisComponent},

@@ -53,7 +53,7 @@ export class ConnexionComponent implements OnInit {
         }else{
           localStorage.setItem('codeUser',reponse['code']);
           localStorage.setItem('idUser',reponse['id']);
-          alert('Connexion réussi');
+          alert('Connexion réussie');
           this.router.navigate(['/map']);
         }
       },
