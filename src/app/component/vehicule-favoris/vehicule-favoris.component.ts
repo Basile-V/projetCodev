@@ -10,17 +10,26 @@ import {VehiculeService} from "../../services/vehicule.service";
 })
 export class VehiculeFavorisComponent implements OnInit {
 
-  vehicule: Vehicule[];
+  vehiculeTable: Array<any>;
 
   constructor(private unVS: VehiculeService, private router: Router) { }
 
   ngOnInit(): void {
+    this.vehiculeTable = new Array();
     this.unVS.getMesVehicules(localStorage.getItem('codeUser'),localStorage.getItem('idUser')).subscribe(
       reponse => {
-        //Pour chaque vehicule, les insérer dans la table véhicule puis afficher dans la liste a puce du HTML
+        for(let i=0;i<reponse.length;i++){
+          let unVehicule = new Vehicule();
+          unVehicule.marque=reponse[i]['marque'];
+          unVehicule.modele=reponse[i]['modele'];
+          unVehicule.marque=reponse[i]['carburant'];
+          unVehicule.marque=reponse[i]['annee'];
+          this.vehiculeTable.push(unVehicule);
+        }
       }
     );
-    console.log(this.vehicule); //Undefined
   }
+
+
 
 }

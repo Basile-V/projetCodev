@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ConnexionService} from "../../services/connexion.service";
 import {Router} from "@angular/router";
 import {VehiculeService} from "../../services/vehicule.service";
+import {Vehicule} from "../../models/vehicule";
+import {newArray} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-mon-vehicule',
@@ -14,12 +16,16 @@ export class MonVehiculeComponent implements OnInit {
   containerStyle: any;
   choixVehiculeForm: FormGroup;
   vehicule: string;
+  marqueTable: Array<any>;
+  modeleTable: Array<any>;
+  carburantTable: Array<any>;
+  anneeTable: Array<any>;
 
   constructor(private unVS: VehiculeService, private router: Router) { }
 
   marqueControl: FormControl = new FormControl('', Validators.required);
   modelControl: FormControl = new FormControl('', Validators.required);
-  carbuControl: FormControl = new FormControl('', Validators.required);
+  carburantControl: FormControl = new FormControl('', Validators.required);
   anneeControl: FormControl = new FormControl('', Validators.required);
 
   ngOnInit(): void {
@@ -27,26 +33,118 @@ export class MonVehiculeComponent implements OnInit {
     this.choixVehiculeForm = new FormGroup({
       marque: this.marqueControl,
       model: this.modelControl,
-      carbu: this.carbuControl,
+      carbu: this.carburantControl,
       annee: this.anneeControl,
     });
+    this.getMarque();
+  }
+
+  getMarque(): void{
+    this.marqueTable = new Array();
+    this.unVS.getMarque().subscribe(
+      reponse => {
+        for(let i=0;i<reponse.length;i++){
+          let marque : string;
+          marque = reponse[i]['name'];
+          this.marqueTable.push(marque)
+        }
+      }
+    );
+  }
+
+  validerMarque():void{
+    this.getModele(this.marqueControl.value);
+  }
+
+  getModele(marque: string): void{
+    this.modeleTable = new Array();
+    this.unVS.getModele(marque).subscribe(
+      reponse => {
+        for(let i=0;i<reponse.length;i++){
+          let model : string;
+          model = reponse[i]['name'];
+          this.modeleTable.push(model)
+        }
+      }
+    );
+  }
+
+  validerModele():void{
+    this.getCarburant(this.marqueControl.value,this.modelControl.value);
+  }
+
+  getCarburant(marque: string, modele:string):void{
+    this.carburantTable=new Array();
+    this.unVS.getCarburant(marque, modele).subscribe(
+      reponse => {
+        for(let i=0;i<reponse.length;i++){
+          let carburant : string;
+          carburant = reponse[i]['name'];
+          this.carburantTable.push(carburant)
+        }
+      }
+    );
+  }
+
+  validerCarburant():void{
+    this.getAnnee(this.marqueControl.value,this.modelControl.value,this.carburantControl.value);
+  }
+
+  getAnnee(marque: string, modele:string, carburant: string):void{
+    this.anneeTable=new Array();
+    this.unVS.getAnnee(marque, modele,carburant).subscribe(
+      reponse => {
+        for(let i=0;i<reponse.length;i++){
+          let annee : string;
+          annee = reponse[i]['name'];
+          this.anneeTable.push(annee)
+        }
+      }
+    );
   }
 
   chercherVehicule(): void{
-    this.vehicule = this.marqueControl.value + '+' + this.modelControl.value + '+' + this.carbuControl.value + '+' +
-      this.anneeControl.value;
-    this.unVS.chercherVehicule(this.vehicule).subscribe(
-      reponse=>{
-        console.log('Recherche en cours...');
-        localStorage.setItem('ListeVehicule', JSON.stringify(reponse));
-        localStorage.setItem('Marque', this.marqueControl.value);
-        localStorage.setItem('Carburant', this.carbuControl.value);
-        localStorage.setItem('Annee', this.anneeControl.value);
-        this.router.navigate(['/choixVehicule'])
+    let unV: Vehicule;
+
+    unV = new Vehicule();
+    unV.marque= this.marqueControl.value;
+    unV.modele= this.modelControl.value;
+    unV.carburant= this.carburantControl.value;
+    unV.annee= this.anneeControl.value;
+    // @ts-ignore
+    localStorage.setItem('marque',unV.marque);
+    // @ts-ignore
+    localStorage.setItem('modele',unV.modele);
+    // @ts-ignore
+    localStorage.setItem('carburant',unV.carburant);
+    // @ts-ignore
+    localStorage.setItem('annee',unV.annee);
+
+    this.unVS.ajouterVehicule(unV).subscribe(
+      reponse => {
+        localStorage.setItem('idCar',reponse['id']);
+        this.addMonVehicule();
+        this.router.navigate(['/note'])
       },
       err => {
-        alert('erreurVehicule dans votre saise, vérifier les champs.');
-        console.log(err);
+        alert('Erreur dans ajout du véhicule');
+      }
+    );
+  }
+
+  addMonVehicule():void{
+    let idUser = localStorage.getItem('idUser');
+    let idCar = localStorage.getItem('idCar');
+    let codeUser = localStorage.getItem('codeUser');
+    // @ts-ignore
+    this.unVS.addMonVehicule(idUser, idCar,codeUser).subscribe(
+      reponse=>{
+        console.log(reponse);
+        console.log('Ajouté en bdd avec user courant');
+      },
+      error =>{
+        console.log('Erreur ajout car/user');
+        console.log(error);
       }
     );
   }
