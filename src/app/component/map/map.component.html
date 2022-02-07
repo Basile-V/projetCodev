@@ -4,10 +4,10 @@
     <div *ngIf="closestStations.length > 0">
       <h2>Liste des stations proche :</h2>
       <ul>
-        <li *ngFor="let station of closestStations">{{ station.address }} <mat-icon (click)="loadStat(station.id)">expand_more</mat-icon></li>
+        <li *ngFor="let station of closestStations">{{ station.address }} <mat-icon (click)="loadStat(station.id)">expand_more</mat-icon><mat-icon *ngIf="!idFav.has(+station.id)" (click)="changeFavoris(station.id)">favorite_border</mat-icon><mat-icon *ngIf="idFav.has(+station.id)" (click)="changeFavoris(station.id)">favorite</mat-icon></li>
       </ul>
     </div>
-    <div *ngIf='values'>
+    <div *ngIf='values && values != null'>
       <h3>Station : {{city}}</h3>
       <h4>Valeurs :</h4>
       <ul>
@@ -23,24 +23,6 @@
           <li *ngFor="let valeur of otherDays | keyvalue">{{valeur.key}} : {{printStat(otherDays.get(valeur.key), selected)}}</li>
         </ul>
       </div>
-<!--      <table>-->
-<!--        <thead>-->
-<!--        <tr *ngIf="dates">-->
-<!--          <th>Jours :</th><th *ngFor='let jour of dates' colspan="3">{{jour}}</th>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--          <th>Chiffres :</th><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <ng-template ngFor let-gaz [ngForOf]="otherDays | keyvalue">-->
-<!--          <tr>-->
-<!--            <th>{{gaz.key}}</th><ng-template ngFor let-chiffre [ngForOf]="gaz.value"><td>{{chiffre["avg"]}}</td><td>{{chiffre["min"]}}</td><td>{{chiffre["max"]}}</td></ng-template>-->
-<!--          </tr>-->
-<!--        </ng-template>-->
-
-<!--        </tbody>-->
-<!--      </table>-->
     </div>
   </div>
   <div class="map-container">

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {environment} from "../../environments/environment";
+import {Place} from "../models/place";
+import {Observable} from "rxjs";
+import {Utilisateur} from "../models/utilisateur";
 const    ENDPOINT = environment.endpoint;
 @Injectable({
   providedIn: 'root'
@@ -43,5 +46,21 @@ export class RequeteHTTPService {
 
   getLastPlaces(id: string, code: string){
     return this.http.get<any>(ENDPOINT + "places/lastPlaces/" + id + "?code=" + code);
+  }
+
+  getPlacesByUserId(id: any, code: any){
+    return this.http.get<any>(ENDPOINT + "places/user/" + id + "?code=" + code);
+  }
+
+  addplace(place: Place): Observable<any>{
+    return this.http.post<Utilisateur>(ENDPOINT + "places", place);
+  }
+
+  addUserPlace(userId: any, placeId: any, code: any): Observable<any>{
+    return this.http.post<Utilisateur>(ENDPOINT + "places/user/add/" + userId+ "?place_id=" + placeId + "&code=" + code, null);
+  }
+
+  changeFavoris(userId: any, placeId: any, code: any): Observable<any>{
+    return this.http.put<Utilisateur>(ENDPOINT + "places/changeFavorite/" + userId+ "?place_id=" + placeId + "&code=" + code, null);
   }
 }
