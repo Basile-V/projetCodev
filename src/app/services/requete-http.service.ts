@@ -33,7 +33,15 @@ export class RequeteHTTPService {
     return this.http.get<any>(ENDPOINT + "cars/favorite/" + id + "?code=" + code);
   }
 
+  getLastCars(id: string, code: string){
+    return this.http.get<any>(ENDPOINT + "cars/lastCars/" + id + "?code=" + code);
+  }
+
   getFavoritePlaces(id: string, code: string){
     return this.http.get<any>(ENDPOINT + "places/favorite/" + id + "?code=" + code);
+  }
+
+  getLastPlaces(id: string, code: string){
+    return this.http.get<any>(ENDPOINT + "places/lastPlaces/" + id + "?code=" + code);
   }
 }

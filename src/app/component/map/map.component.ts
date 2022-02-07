@@ -69,6 +69,9 @@ export class MapComponent implements AfterViewInit {
     for (let i = 0; i < this.closestStations.length; i++) {
       this.addStation(this.closestStations[i].latitude, this.closestStations[i].longitude, this.closestStations[i].address, this.closestStations[i].id);
     }
+    if(this.closestStations.length > 0){
+      this.loadStat(this.closestStations[0].id);
+    }
   }
 
   loadStat(id: number) {
@@ -76,6 +79,7 @@ export class MapComponent implements AfterViewInit {
     this.otherDays = new Map();
     this.service.getPollution(id).subscribe(data => {
       this.city = data["city"];
+      console.log(data);
       for(const [key, value] of Object.entries(data["values"])){
         // @ts-ignore
         if (typeof value["v"] === "number") {

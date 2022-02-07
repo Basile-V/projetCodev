@@ -13,6 +13,8 @@ export class ProfilComponent implements OnInit {
   codeUser: any;
   favoriteCars: Array<any>;
   favoritePlaces: Array<any>;
+  lastCars: Array<any>;
+  lastPlaces: Array<any>;
 
   constructor(private service: RequeteHTTPService, private utilisateur: UtilisateurService, private router: Router) { }
 
@@ -21,6 +23,8 @@ export class ProfilComponent implements OnInit {
     this.idUser = localStorage.getItem("idUser");
     this.getFavoriteCars();
     this.getFavoritePlaces();
+    this.getLastCars();
+    this.getLastPlaces();
   }
 
   deconnexion(): void {
@@ -53,6 +57,20 @@ export class ProfilComponent implements OnInit {
     this.service.getFavoritePlaces(this.idUser, this.codeUser).subscribe(places => {
       console.log(places);
       this.favoritePlaces = places;
+    });
+  }
+
+  getLastCars(){
+    this.service.getLastCars(this.idUser, this.codeUser).subscribe(cars => {
+      console.log(cars);
+      this.lastCars = cars;
+    });
+  }
+
+  getLastPlaces(){
+    this.service.getLastPlaces(this.idUser, this.codeUser).subscribe(places => {
+      console.log(places);
+      this.lastPlaces = places;
     });
   }
 }
