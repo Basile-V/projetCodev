@@ -27,6 +27,7 @@ export class MonVehiculeComponent implements OnInit {
   modelControl: FormControl = new FormControl('', Validators.required);
   carburantControl: FormControl = new FormControl('', Validators.required);
   anneeControl: FormControl = new FormControl('', Validators.required);
+  favoriControl: FormControl = new FormControl('', Validators.required);
 
   ngOnInit(): void {
     this.containerStyle = 'container';
@@ -36,6 +37,10 @@ export class MonVehiculeComponent implements OnInit {
       carbu: this.carburantControl,
       annee: this.anneeControl,
     });
+    localStorage.removeItem('marque');
+    localStorage.removeItem('modele');
+    localStorage.removeItem('carburant');
+    localStorage.removeItem('annee');
     this.getMarque();
   }
 
@@ -123,7 +128,9 @@ export class MonVehiculeComponent implements OnInit {
     this.unVS.ajouterVehicule(unV).subscribe(
       reponse => {
         localStorage.setItem('idCar',reponse['id']);
-        this.addMonVehicule();
+        let idCar = reponse['id'];
+        // @ts-ignore
+        this.addMonVehicule(idCar);
         this.router.navigate(['/note'])
       },
       err => {
@@ -132,24 +139,33 @@ export class MonVehiculeComponent implements OnInit {
     );
   }
 
-  addMonVehicule():void{
+  addMonVehicule(idCar:string):void{
     let idUser = localStorage.getItem('idUser');
-    let idCar = localStorage.getItem('idCar');
     let codeUser = localStorage.getItem('codeUser');
     // @ts-ignore
     this.unVS.addMonVehicule(idUser, idCar,codeUser).subscribe(
       reponse=>{
+        if(this.favoriControl.value=="Oui"){
+          // @ts-ignore
+          this.addVehiculeFavori(idUser,idCar,codeUser);
+        }
         console.log(reponse);
-        console.log('Ajouté en bdd avec user courant');
       },
       error =>{
-        console.log('Erreur ajout car/user');
         console.log(error);
       }
     );
   }
 
-  vehiculeFavoris():void{
-    this.router.navigate(['/vehiculeFavoris'])
+  addVehiculeFavori(idUser:string,idCar:string,codeUser:string):void{
+    this.unVS.addVehiculeFavori(idUser,idCar,codeUser).subscribe(
+      reponse=>{
+        console.log(reponse);
+        localStorage.removeItem('idCar');
+      },
+      error=>{
+        console.log(error);
+      }
+    )
   }
 }

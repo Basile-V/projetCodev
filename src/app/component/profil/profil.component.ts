@@ -74,13 +74,20 @@ export class ProfilComponent implements OnInit {
     });
   }
 
-  goToCar(id: string){
-    localStorage.setItem("car", id);
-    this.router.navigate(["/monVehicule"])
+  goToCar(modele: string,marque:string,carburant:string,annee:string){
+    localStorage.removeItem('marque');
+    localStorage.removeItem('modele');
+    localStorage.removeItem('carburant');
+    localStorage.removeItem('annee');
+    localStorage.setItem('marque',marque);
+    localStorage.setItem('modele',modele);
+    localStorage.setItem('carburant',carburant);
+    localStorage.setItem('annee',annee);
+    this.router.navigate(["/note"])
   }
 
   goToPlace(id: string){
     localStorage.setItem("place", id);
-    this.router.navigate(["/map"])
+    this.router.navigate(["/monVehicule"])
   }
 }

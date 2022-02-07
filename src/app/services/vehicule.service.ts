@@ -22,11 +22,13 @@ export class VehiculeService {
   }
 
   addMonVehicule(idUser: string, carId: string, codeUser: string): Observable<any>{
-    let params = new HttpParams();
-    params = params.append('car_id',carId);
-    params = params.append('code',codeUser);
-    this.vehiculeUrl=ENDPOINT+'cars/user/add/'+idUser;
-    return this.httpVehicule.post(this.vehiculeUrl,{params});
+    this.vehiculeUrl=ENDPOINT+'cars/user/add/';
+    return this.httpVehicule.post(this.vehiculeUrl + idUser + '?car_id='+carId+'&code=' + codeUser, null);
+  }
+
+  addVehiculeFavori(idUser:string,idCar:string,codeUser:string): Observable<any>{
+    this.vehiculeUrl=ENDPOINT+'cars/changeFavorite/';
+    return this.httpVehicule.put(this.vehiculeUrl + idUser+'?car_id='+idCar+'&code='+codeUser,null);
   }
 
   ajouterVehicule(unVehicule: Vehicule): Observable<any>{
