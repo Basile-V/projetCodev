@@ -21,17 +21,12 @@ export class VehiculeService {
       .set('Access-Control-Allow-Origin', '*');
   }
 
-  chercherVehicule(unVehicule: string): Observable<any>{
+  addMonVehicule(idUser: string, carId: string, codeUser: string): Observable<any>{
     let params = new HttpParams();
-
-    params = params.append('dataset', 'vehicules-commercialises');
-    params = params.append('q', unVehicule);
-    params = params.append('facet', 'marque');
-    params = params.append('facet', 'modele_utac');
-    params = params.append('facet', 'carburant');
-    this.vehiculeUrl = 'https://public.opendatasoft.com/api/records/1.0/search';
-
-    return this.httpVehicule.get(this.vehiculeUrl, { params: params })
+    params = params.append('car_id',carId);
+    params = params.append('code',codeUser);
+    this.vehiculeUrl=ENDPOINT+'cars/user/add/'+idUser;
+    return this.httpVehicule.post(this.vehiculeUrl,{params});
   }
 
   ajouterVehicule(unVehicule: Vehicule): Observable<any>{
@@ -48,8 +43,35 @@ export class VehiculeService {
 
   getMesVehicules(code: string | null, id: string | null): Observable<any>{
     this.vehiculeUrl = ENDPOINT + 'cars/user/'+id+'/'+code;
-    console.log()
     return this.httpVehicule.get<Vehicule>(this.vehiculeUrl);
   }
 
+  getMarque(): Observable<any>{
+    this.vehiculeUrl=ENDPOINT+'car_pollution/marques';
+    return this.httpVehicule.get(this.vehiculeUrl);
+  }
+
+  getModele(marque: string): Observable<any>{
+    let params = new HttpParams();
+    params = params.append('marque',marque);
+    this.vehiculeUrl=ENDPOINT+'car_pollution/modeles';
+    return this.httpVehicule.get(this.vehiculeUrl,{params});
+  }
+
+  getCarburant(marque: string, modele: string):Observable<any>{
+    let params = new HttpParams();
+    params = params.append('marque',marque);
+    params = params.append('modele',modele);
+    this.vehiculeUrl=ENDPOINT+'car_pollution/carburants';
+    return this.httpVehicule.get(this.vehiculeUrl,{params});
+  }
+
+  getAnnee(marque: string, modele: string, carburant: string):Observable<any>{
+    let params = new HttpParams();
+    params = params.append('marque',marque);
+    params = params.append('modele',modele);
+    params = params.append('carburant',carburant);
+    this.vehiculeUrl=ENDPOINT+'car_pollution/annees';
+    return this.httpVehicule.get(this.vehiculeUrl,{params});
+  }
 }
