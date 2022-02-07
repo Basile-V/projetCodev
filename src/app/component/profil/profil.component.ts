@@ -73,4 +73,14 @@ export class ProfilComponent implements OnInit {
       this.lastPlaces = places;
     });
   }
+
+  goToCar(id: string){
+    localStorage.setItem("car", id);
+    this.router.navigate(["/monVehicule"])
+  }
+
+  goToPlace(id: string){
+    localStorage.setItem("place", id);
+    this.router.navigate(["/map"])
+  }
 }
