@@ -4,36 +4,38 @@
     <div *ngIf="closestStations.length > 0">
       <h2>Liste des stations proche :</h2>
       <ul>
-        <li *ngFor="let station of closestStations">{{ station.address }} <mat-icon (click)="printStat(station.id)">expand_more</mat-icon></li>
+        <li *ngFor="let station of closestStations">{{ station.address }} <mat-icon (click)="loadStat(station.id)">expand_more</mat-icon></li>
       </ul>
     </div>
-    <div *ngIf='station && station["values"]'>
-      <h3>Station : {{station["city"]}}</h3>
+    <div *ngIf='values'>
+      <h3>Station : {{city}}</h3>
       <h4>Valeurs :</h4>
       <ul>
-        <li *ngIf='station["values"]["dew"]["v"]'>Dew : {{station["values"]["dew"]["v"]}} </li>
-        <li *ngIf='station["values"]["h"]["v"]'>h : {{station["values"]["h"]["v"]}} </li>
-        <li *ngIf='station["values"]["no2"]["v"]'>no2 : {{station["values"]["no2"]["v"]}} </li>
-        <li *ngIf='station["values"]["p"]["v"]'>p : {{station["values"]["p"]["v"]}} </li>
-<!--        <li *ngIf='station["values"]["pm10"]["v"]'>pm10 : {{station["values"]["pm10"]["v"]}} </li>-->
-<!--        <li *ngIf='station["values"]["pm25"]["v"]'>pm25 : {{station["values"]["pm25"]["v"]}} </li>-->
-        <li *ngIf='station["values"]["t"]["v"]'>t : {{station["values"]["t"]["v"]}} </li>
-        <li *ngIf='station["values"]["w"]["v"]'>w : {{station["values"]["w"]["v"]}} </li>
+        <li *ngFor="let valeur of values | keyvalue">{{valeur.key}} : {{valeur.value}}</li>
       </ul>
-<!--      <h4>Derniers jours :</h4>-->
-<!--      <table *ngIf='station["nextDays"]'>-->
+      <h4>Derniers jours :</h4>
+        <label>Choisir un jour : </label>
+        <select [(ngModel)]="selected">
+          <option *ngFor="let date of dates; let i = index" value="{{i}}">{{date}}</option>
+        </select>
+      <div>
+        <ul>
+          <li *ngFor="let valeur of otherDays | keyvalue">{{valeur.key}} : {{printStat(otherDays.get(valeur.key), selected)}}</li>
+        </ul>
+      </div>
+<!--      <table>-->
 <!--        <thead>-->
-<!--        <tr *ngIf='station["nextDays"]["o3"]'>-->
-<!--          <th>Jours :</th><th *ngFor='let jour of station["nextDays"]["o3"]' colspan="3">{{jour["day"]}}</th>-->
+<!--        <tr *ngIf="dates">-->
+<!--          <th>Jours :</th><th *ngFor='let jour of dates' colspan="3">{{jour}}</th>-->
 <!--        </tr>-->
 <!--        <tr>-->
 <!--          <th>Chiffres :</th><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td><td>Moyenne</td><td>Min</td><td>Max</td>-->
 <!--        </tr>-->
 <!--        </thead>-->
 <!--        <tbody>-->
-<!--        <ng-template ngFor let-gaz [ngForOf]='station["nextDays"]'>-->
+<!--        <ng-template ngFor let-gaz [ngForOf]="otherDays | keyvalue">-->
 <!--          <tr>-->
-<!--            <th>{{station["nextDays"].key}}</th><ng-template ngFor let-item [ngForOf]='gaz'><td>{{item["avg"]}}</td><td>{{item["min"]}}</td><td>{{item["max"]}}</td></ng-template>-->
+<!--            <th>{{gaz.key}}</th><ng-template ngFor let-chiffre [ngForOf]="gaz.value"><td>{{chiffre["avg"]}}</td><td>{{chiffre["min"]}}</td><td>{{chiffre["max"]}}</td></ng-template>-->
 <!--          </tr>-->
 <!--        </ng-template>-->
 

@@ -29,11 +29,16 @@ export class MapComponent implements AfterViewInit {
   closestStations = new Array();
   stationSelected: any;
   station: any;
-  sept: Array<number>;
+  values: Map<string, number>;
+  sept = [Array(7).keys()];
+  city: string;
+  otherDays: Map<string, Array<any>>;
+  dates: Array<any>;
+  selected = 0;
 
   initMap(): void {
     this.map = L.map('map', {
-      center: [ 46.833, 2.333 ],
+      center: [46.833, 2.333],
       zoom: 6
     });
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -45,14 +50,15 @@ export class MapComponent implements AfterViewInit {
     tiles.addTo(this.map);
   }
 
-  constructor(private service: RequeteHTTPService) { }
+  constructor(private service: RequeteHTTPService) {
+  }
 
   ngAfterViewInit(): void {
     this.initMap();
     this.sept = new Array(7);
   }
 
-  addStation(lat: any, lon: any, name: string, id: number){
+  addStation(lat: any, lon: any, name: string, id: number) {
     const marker = L.marker([lat, lon]).addTo(this.map);
     marker.bindPopup(name);
     marker.addTo(this.map);
@@ -60,16 +66,40 @@ export class MapComponent implements AfterViewInit {
 
   childToParent($event: Array<any>) {
     this.closestStations = $event;
-    console.log(this.closestStations);
-    for (let i = 0; i < this.closestStations.length; i++){
+    for (let i = 0; i < this.closestStations.length; i++) {
       this.addStation(this.closestStations[i].latitude, this.closestStations[i].longitude, this.closestStations[i].address, this.closestStations[i].id);
     }
   }
 
-  printStat(id: number){
+  loadStat(id: number) {
+    this.values = new Map();
+    this.otherDays = new Map();
     this.service.getPollution(id).subscribe(data => {
-      this.station = data;
-      console.log(data);
+      this.city = data["city"];
+      for(const [key, value] of Object.entries(data["values"])){
+        // @ts-ignore
+        if (typeof value["v"] === "number") {
+          // @ts-ignore
+          this.values.set(key, value["v"]);
+        }
+      }
+      let lastValue;
+      for(const [key, value] of Object.entries(data["nextDays"])){
+        // @ts-ignore
+        this.otherDays.set(key, value);
+        lastValue = value;
+      }
+      this.dates = new Array();
+      // @ts-ignore
+      for(var i = 0; i < lastValue.length; i++){
+        // @ts-ignore
+        this.dates.push(lastValue[i]["day"]);
+      }
     });
+  }
+
+  printStat(val: any, selected: number){
+    // @ts-ignore
+    return "moyenne : " + val[selected]["avg"] + ", min : " + val[selected]["min"] + ", max : " + val[selected]["max"];
   }
 }
