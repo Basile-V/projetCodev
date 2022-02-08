@@ -86,7 +86,8 @@ export class ProfilComponent implements OnInit {
     this.router.navigate(["/note"]);
   }
 
-  goToPlace(adress: string, latitude:string, longitude:string){
+  goToPlace(id:string,adress: string, latitude:string, longitude:string){
+    localStorage.setItem('idPlace',id);
     localStorage.setItem("adress", adress);
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);
