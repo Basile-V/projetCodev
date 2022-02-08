@@ -97,6 +97,8 @@ export class MapComponent implements AfterViewInit {
   }
 
   loadStat(id: number, marker = false) {
+//    localStorage.removeItem('idPlace');             A mettre pour supprimer l'idPlace courant et le remplacer ?
+
     this.values = new Map();
     this.otherDays = new Map();
     this.service.getPollution(id).subscribe(data => {

@@ -1,12 +1,18 @@
 .main{
   width: 650px;
   height: 650px;
+  margin: auto;
+  padding-top: 20px;
   overflow: auto  ;
   border-radius: 10px;
   box-shadow: 5px 20px 50px #000;
   text-align: center;
   background-color: #21D4FD;
   background-image: linear-gradient(19deg, #21D4FD 0%, #7821ff 100%);
+}
+
+section{
+  padding-top: 50px;
 }
 
 body{
