@@ -2,8 +2,9 @@
   width: 100%;
   display: flex;
   align-content: space-between;
-  height: 8%;background-color: #8BC6EC;
-  background-image: linear-gradient(135deg, #26437E 0%, #56779F 100%);
+  height: 8%;
+  background-color: #2184fd;
+  background-image: linear-gradient(19deg, #2184fd 0%, #7821ff 100%);
 
 }
 
@@ -42,7 +43,7 @@ p, mat-icon{
 }
 
 a:visited{
-  color: #A6C4DE;
+  color: white;
   text-decoration: none;
 }
 

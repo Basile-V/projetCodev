@@ -16,7 +16,7 @@ body{
   align-items: center;
   min-height: 100vh;
   font-family: 'Jost', sans-serif;
-  background: linear-gradient(to bottom, #A6C4DE, #4A86D3, #A6C4DE);
+  overflow: auto;
 }
 
 select {
@@ -93,7 +93,7 @@ table {
 th, td {
   padding: 15px;
   background-color: rgba(255,255,255,0.2);
-  color: #fff;
+  color: black;
   text-align: center;
 }
 
@@ -111,7 +111,7 @@ tbody {
 }
 
 tr:hover{
-  background-color: rgba(255,255,255,0.3);
+  background-color: darkgrey;
 }
 
 td{
@@ -139,7 +139,7 @@ h1,h2,h3,h4{
   text-align: center;
   padding-bottom: 50px;
   padding-top: 50px;
-  color: white;
+  color: black;
 }
 
 .buttonChoisir{
