@@ -26,6 +26,7 @@ export class NoteComponent implements OnInit {
   idCar: string;
   note: string;
   idPlace:string;
+  conseil:string;
 
   constructor(private unVS: VehiculeService, private service: RequeteHTTPService, private router: Router) {
   }
@@ -132,6 +133,16 @@ export class NoteComponent implements OnInit {
     this.service.getNote(carCO2, airCO2).subscribe(
       reponse => {
         this.note = reponse['note'];
+        // @ts-ignore
+        if(<number>this.note<50){
+          this.conseil="Vous pouvez prendre votre véhicule.";
+        }else { // @ts-ignore
+          if(<number>this.note>=50 ||<number>this.note<=100){
+            this.conseil="La qualité de l'air est normale, vous pouvez prendre votre véhicule.";
+                  }else{
+            this.conseil="La qualité de l'air est mauvaise, ne prenez pas votre véhicule";
+          }
+        }
         console.log(this.note);
       },
       error => {
