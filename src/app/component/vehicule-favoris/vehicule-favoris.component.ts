@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Vehicule} from "../../models/vehicule";
 import {Router} from "@angular/router";
-import {VehiculeService} from "../../services/vehicule.service";
 import {RequeteHTTPService} from "../../services/requete-http.service";
-import {UtilisateurService} from "../../services/utilisateur.service";
 
 @Component({
   selector: 'app-vehicule-favoris',

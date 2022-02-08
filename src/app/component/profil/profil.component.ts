@@ -75,10 +75,6 @@ export class ProfilComponent implements OnInit {
   }
 
   goToCar(modele: string,marque:string,carburant:string,annee:string){
-    localStorage.removeItem('marque');
-    localStorage.removeItem('modele');
-    localStorage.removeItem('carburant');
-    localStorage.removeItem('annee');
     localStorage.setItem('marque',marque);
     localStorage.setItem('modele',modele);
     localStorage.setItem('carburant',carburant);

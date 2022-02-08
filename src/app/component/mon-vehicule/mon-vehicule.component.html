@@ -1,6 +1,6 @@
 <html>
 <app-header></app-header>
-<body>
+<section>
 <div class="main">
   <form id="search-form" name="gs" method="submit" role="search" [formGroup]="choixVehiculeForm"
         (ngSubmit)="chercherVehicule()">
@@ -50,5 +50,5 @@
     <button (click)="redirectFavoriCars()" class="main-button">Mes véhicules favoris</button>
   </fieldset>
 </div>
-</body>
+</section>
 </html>

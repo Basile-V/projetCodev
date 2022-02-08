@@ -1,6 +1,9 @@
 <app-header (childToParent)=childToParent($event)></app-header>
 <section class="main-section">
   <div id="nearbyStation">
+    <div *ngIf="!(closestStations.length > 0)" id="abscenceLoc">
+      <p>Veuillez entrer un code postal ou activer la localisation</p>
+    </div>
     <div *ngIf="closestStations.length > 0">
       <h2>Liste des stations proche :</h2>
       <ul>

@@ -37,6 +37,7 @@ export class MapComponent implements AfterViewInit {
   places = [];
   idFav: Set<any>;
   showButton: boolean;
+  markers: Array<any>;
 
   initMap(): void {
     this.map = L.map('map', {
@@ -56,6 +57,7 @@ export class MapComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.markers = new Array();
     this.initMap();
     if(localStorage.getItem("place") != null){
       // @ts-ignore
@@ -75,10 +77,14 @@ export class MapComponent implements AfterViewInit {
     const marker = L.marker([lat, lon]).addTo(this.map);
     marker.bindPopup(name);
     marker.addTo(this.map);
+    this.markers.push(marker);
   }
 
   childToParent($event: Array<any>) {
     this.closestStations = $event;
+    while (this.markers.length > 0){
+      this.map.removeLayer(this.markers.pop());
+    }
     for (let i = 0; i < this.closestStations.length; i++) {
       this.addStation(this.closestStations[i].latitude, this.closestStations[i].longitude, this.closestStations[i].address);
     }

@@ -41,13 +41,6 @@ export class NoteComponent implements OnInit {
     let place = localStorage.getItem('adress');
     let latitude = localStorage.getItem('latitude');
     let longitude = localStorage.getItem('longitude');
-    localStorage.removeItem('marque');
-    localStorage.removeItem('modele');
-    localStorage.removeItem('carburant');
-    localStorage.removeItem('annee');
-    localStorage.removeItem('adress');
-    localStorage.removeItem('latitude');
-    localStorage.removeItem('longitude');
     this.vehicule.marque = marque;
     this.vehicule.modele = modele;
     this.vehicule.carburant = carburant;

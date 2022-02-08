@@ -6,10 +6,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './component/header/header.component';
 import { MapComponent } from './component/map/map.component';
 import { ConnexionComponent } from './component/connexion/connexion.component';
-import { QualiteAirComponent } from './component/qualite-air/qualite-air.component';
 import { MonVehiculeComponent } from './component/mon-vehicule/mon-vehicule.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StationsComponent } from './component/stations/stations.component';
 import {CommonModule} from "@angular/common";
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -32,9 +30,7 @@ import { ProfilComponent } from './component/profil/profil.component';
     HeaderComponent,
     MapComponent,
     ConnexionComponent,
-    QualiteAirComponent,
     MonVehiculeComponent,
-    StationsComponent,
     NoteComponent,
     ErreurVehiculeComponent,
     VehiculeFavorisComponent,
