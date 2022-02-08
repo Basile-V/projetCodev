@@ -40,7 +40,7 @@ export class RequeteHTTPService {
     return this.http.get<any>(ENDPOINT + "cars/lastCars/" + id + "?code=" + code);
   }
 
-  getFavoritePlaces(id: string, code: string){
+  getFavoritePlaces(id: any, code: any){
     return this.http.get<any>(ENDPOINT + "places/favorite/" + id + "?code=" + code);
   }
 

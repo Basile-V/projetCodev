@@ -61,6 +61,7 @@ export class MapComponent implements AfterViewInit {
       this.loadStat(+localStorage.getItem("place"), true);
       localStorage.removeItem("place");
     }
+    this.getFavoritePlaces();
     this.getPlace();
   }
 
@@ -88,6 +89,10 @@ export class MapComponent implements AfterViewInit {
     this.otherDays = new Map();
     this.service.getPollution(id).subscribe(data => {
       this.city = data["city"];
+      localStorage.setItem('idPlace', data["id"]);
+      localStorage.setItem('adress', data["city"]);
+      localStorage.setItem('latitude', data["latitude"]);
+      localStorage.setItem('longitude', data["longitude"]);
       this.map.flyTo([data["latitude"], data["longitude"]], 15);
       if(marker){
         this.addStation(data["latitude"], data["longitude"], data["city"])
@@ -141,9 +146,14 @@ export class MapComponent implements AfterViewInit {
   getPlace(){
     this.service.getPlacesByUserId(localStorage.getItem('idUser'), localStorage.getItem('codeUser')).subscribe(data => {
       this.places = data;
+    });
+  }
+
+  getFavoritePlaces(){
+    this.service.getFavoritePlaces(localStorage.getItem('idUser'), localStorage.getItem('codeUser')).subscribe(places => {
       this.idFav = new Set<any>();
-      for(var i = 0; i < data.length; i++){
-        this.idFav.add(data[i]["id"]);
+      for(var i = 0; i < places.length; i++){
+        this.idFav.add(places[i]["id"]);
       }
     });
   }
