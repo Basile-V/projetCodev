@@ -29,7 +29,10 @@
           </div>
         </div>
       </div>
-      <button mat-raised-button class="btn-primary" (click)="goCars()">Choisir ma voiture</button>
+      <div id="button">
+        <button mat-raised-button *ngIf="showButton" class="btn-primary" (click)="goNote()">Voir ma note</button>
+        <button mat-raised-button class="btn-primary" (click)="goCars()">Choisir ma voiture</button>
+      </div>
     </div>
   </div>
   <div class="map-container">

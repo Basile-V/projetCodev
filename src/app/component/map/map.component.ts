@@ -36,6 +36,7 @@ export class MapComponent implements AfterViewInit {
   selected = 0;
   places = [];
   idFav: Set<any>;
+  showButton: boolean;
 
   initMap(): void {
     this.map = L.map('map', {
@@ -60,6 +61,11 @@ export class MapComponent implements AfterViewInit {
       // @ts-ignore
       this.loadStat(+localStorage.getItem("place"), true);
       localStorage.removeItem("place");
+    }
+    if(localStorage.getItem("button") == String(true)){
+      this.showButton = true;
+    } else{
+      this.showButton = false;
     }
     this.getFavoritePlaces();
     this.getPlace();
@@ -188,6 +194,12 @@ export class MapComponent implements AfterViewInit {
   }
 
   goCars(){
+    localStorage.setItem("button", String(false));
     this.router.navigate(["/monVehicule"]);
+  }
+
+  goNote(){
+    localStorage.setItem("button", String(false));
+    this.router.navigate(["/note"]);
   }
 }

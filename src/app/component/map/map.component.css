@@ -80,6 +80,11 @@ mat-icon{
   transform: scale(1.07);
 }
 
+div#button{
+  display: flex;
+  justify-content: space-around;
+}
+
 @media (max-width: 945px) {
   .main-section{
     display: flex;

@@ -91,6 +91,7 @@ export class ProfilComponent implements OnInit {
     localStorage.setItem("adress", adress);
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);
+    localStorage.setItem("button", String(true));
     this.router.navigate(["/monVehicule"])
   }
 
