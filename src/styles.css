@@ -5,3 +5,11 @@ html, body {
   overflow: hidden;
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+@media (max-width: 945px) {
+  html, body {
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+}
