@@ -1,29 +1,36 @@
 <app-header (childToParent)=childToParent($event)></app-header>
 <section>
-  <div id="stats">
+  <div id="nearbyStation">
     <div *ngIf="closestStations.length > 0">
       <h2>Liste des stations proche :</h2>
       <ul>
-        <li *ngFor="let station of closestStations">{{ station.address }} <mat-icon (click)="loadStat(station.id)">expand_more</mat-icon><mat-icon *ngIf="!idFav.has(+station.id)" (click)="changeFavoris(station.id)">favorite_border</mat-icon><mat-icon *ngIf="idFav.has(+station.id)" (click)="changeFavoris(station.id)">favorite</mat-icon></li>
+        <li *ngFor="let station of closestStations">{{ station.address }} <mat-icon (click)="loadStat(station.id)">expand_more</mat-icon><mat-icon *ngIf="!idFav.has(+station.id)" (click)="changeFavoris(station.id)" class="favorite">favorite_border</mat-icon><mat-icon *ngIf="idFav.has(+station.id)" (click)="changeFavoris(station.id)" class="favorite">favorite</mat-icon></li>
       </ul>
     </div>
-    <div *ngIf='values && values != null'>
+    <div *ngIf='values && values != null' id="stats">
       <h3>Station : {{city}}</h3>
-      <h4>Valeurs :</h4>
-      <ul>
-        <li *ngFor="let valeur of values | keyvalue">{{valeur.key}} : {{valeur.value}}</li>
-      </ul>
-      <h4>Derniers jours :</h4>
-        <label>Choisir un jour : </label>
-        <select [(ngModel)]="selected">
-          <option *ngFor="let date of dates; let i = index" value="{{i}}">{{date}}</option>
-        </select>
-      <div>
-        <ul>
-          <li *ngFor="let valeur of otherDays | keyvalue">{{valeur.key}} : {{printStat(otherDays.get(valeur.key), selected)}}</li>
-        </ul>
+      <div id="station">
+        <div id="value">
+          <h4>Valeurs :</h4>
+          <ul>
+            <li *ngFor="let valeur of values | keyvalue">{{valeur.key}} : {{valeur.value}}</li>
+          </ul>
+        </div>
+        <div id="lastDays">
+          <h4>Derniers jours :</h4>
+          <label>Choisir un jour : </label>
+          <select [(ngModel)]="selected">
+            <option *ngFor="let date of dates; let i = index" value="{{i}}">{{date}}</option>
+          </select>
+          <div>
+            <ul>
+              <li *ngFor="let valeur of otherDays | keyvalue">{{valeur.key}} : {{printStat(otherDays.get(valeur.key), selected)}}</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
+    <button mat-raised-button (click)="goCars()">Choisir ma voiture</button>
   </div>
   <div class="map-container">
     <div class="map-frame">

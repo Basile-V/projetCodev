@@ -1,3 +1,7 @@
+section{
+  background: linear-gradient(to bottom, #A6C4DE, #4A86D3, #A6C4DE);
+}
+
 .map-container{
   display: contents;
 }
@@ -10,6 +14,11 @@
 #map{
   position: relative;
   height: 100%;
+  border-radius: 3%;
+  top: 2.5%;
+  width: 95%;
+  height: 95%;
+  margin: auto;
 }
 
 section{
@@ -17,10 +26,39 @@ section{
   display: flex;
 }
 
-div#stats{
+div#nearbyStation{
   width: 50%;
 }
 
 span.markerid{
   display: none;
+}
+
+div#station{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+div#value, div#lastDays{
+  margin: 0px auto;
+}
+
+div#nearbyStation{
+  margin: 1%;
+}
+
+h3{
+  padding-left: 3%;
+}
+
+div#stats{
+  height: 100%;
+  margin: auto;
+  margin-top: auto;
+  margin-top: 5%;
+}
+
+mat-icon{
+  vertical-align: middle;
 }

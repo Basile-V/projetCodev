@@ -87,15 +87,20 @@
           <th>Latitude</th>
           <th>Longitude</th>
           <th>Rejoindre</th>
+          <th>Favoris</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let place of lastPlaces">
+        <tr *ngFor="let place of lastPlaces; let i = index">
           <td>{{place.address}}</td>
           <td>{{place.latitude}}</td>
           <td>{{place.longitude}}</td>
           <td (click)="goToPlace(place.id)">
             <mat-icon>arrow_right_alt</mat-icon>
+          </td>
+          <td (click)="changeFavoris(place.id, i)">
+            <mat-icon *ngIf="!favoris(place.id)">favorite_border</mat-icon>
+            <mat-icon *ngIf="favoris(place.id)">favorite</mat-icon>
           </td>
         </tr>
         </tbody>

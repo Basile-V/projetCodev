@@ -49,10 +49,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  getClosestStation(){
-    console.log(this.closestStations);
-  }
-
   sendToParent(stations: any[] | undefined){
     this.childToParent.emit(stations);
   }

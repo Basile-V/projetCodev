@@ -44,7 +44,6 @@ export class ConnexionComponent implements OnInit {
     unUt = new Utilisateur();
     unUt.nomUtil = this.conn_usernameControl.value;
     unUt.password = this.conn_passworControl.value;
-    console.log(unUt);
     this.unCS.getLogin(unUt).subscribe(
       reponse  => {
         if(reponse==null){

@@ -83,11 +83,38 @@ export class ProfilComponent implements OnInit {
     localStorage.setItem('modele',modele);
     localStorage.setItem('carburant',carburant);
     localStorage.setItem('annee',annee);
-    this.router.navigate(["/note"])
+    this.router.navigate(["/note"]);
   }
 
   goToPlace(id: string){
     localStorage.setItem("place", id);
-    this.router.navigate(["/monVehicule"])
+    this.router.navigate(["/monVehicule"]);
+  }
+
+  favoris(id: any): boolean{
+    let find = false;
+    let i = 0;
+    while (!find && i < this.favoritePlaces.length){
+      if(+this.favoritePlaces[i++].id == +id){
+        find = true;
+      }
+    }
+    return find;
+  }
+  changeFavoris(id: any, index: any){
+    let find = false;
+    let i = 0;
+    while (!find && i < this.favoritePlaces.length){
+      if(+this.favoritePlaces[i++].id == +id){
+        find = true;
+      }
+    }
+    this.service.changeFavoris(localStorage.getItem('idUser'), id, localStorage.getItem('codeUser')).subscribe( data => {
+      if(!find){
+        this.favoritePlaces.push(this.lastPlaces[index]);
+      } else{
+        this.favoritePlaces.splice(i - 1, 1);
+      }
+    });
   }
 }

@@ -3,6 +3,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import {RequeteHTTPService} from "../../services/requete-http.service";
 import {Place} from "../../models/place";
+import {Router} from "@angular/router";
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -50,7 +51,7 @@ export class MapComponent implements AfterViewInit {
     tiles.addTo(this.map);
   }
 
-  constructor(private service: RequeteHTTPService) {
+  constructor(private service: RequeteHTTPService, private router: Router) {
   }
 
   ngAfterViewInit(): void {
@@ -75,6 +76,9 @@ export class MapComponent implements AfterViewInit {
       this.addStation(this.closestStations[i].latitude, this.closestStations[i].longitude, this.closestStations[i].address);
     }
     if(this.closestStations.length > 0){
+      this.map.flyTo([this.closestStations[0].latitude, this.closestStations[0].longitude], 15);
+    }
+    if(this.closestStations.length > 0){
       this.loadStat(this.closestStations[0].id);
     }
   }
@@ -84,6 +88,7 @@ export class MapComponent implements AfterViewInit {
     this.otherDays = new Map();
     this.service.getPollution(id).subscribe(data => {
       this.city = data["city"];
+      this.map.flyTo([data["latitude"], data["longitude"]], 15);
       if(marker){
         this.addStation(data["latitude"], data["longitude"], data["city"])
       } else{
@@ -137,11 +142,9 @@ export class MapComponent implements AfterViewInit {
     this.service.getPlacesByUserId(localStorage.getItem('idUser'), localStorage.getItem('codeUser')).subscribe(data => {
       this.places = data;
       this.idFav = new Set<any>();
-      console.log(data);
       for(var i = 0; i < data.length; i++){
         this.idFav.add(data[i]["id"]);
       }
-      console.log(this.idFav);
     });
   }
 
@@ -155,22 +158,26 @@ export class MapComponent implements AfterViewInit {
     }
     if(find){
       this.service.changeFavoris(localStorage.getItem('idUser'), id, localStorage.getItem('codeUser')).subscribe( data => {
-        if(this.idFav.has(id)){
-          this.idFav.delete(id);
+        if(this.idFav.has(+id)){
+          this.idFav.delete(+id);
         } else{
-          this.idFav.add(id);
+          this.idFav.add(+id);
         }
       });
     } else{
       this.service.addUserPlace(localStorage.getItem("idUser"), id, localStorage.getItem("codeUser")).subscribe(reponse => {
         this.service.changeFavoris(localStorage.getItem('idUser'), id, localStorage.getItem('codeUser')).subscribe( data => {
-          if(this.idFav.has(id)){
-            this.idFav.delete(id);
+          if(this.idFav.has(+id)){
+            this.idFav.delete(+id);
           } else{
-            this.idFav.add(id);
+            this.idFav.add(+id);
           }
         });
       })
     }
+  }
+
+  goCars(){
+    this.router.navigate(["/monVehicule"]);
   }
 }
