@@ -83,10 +83,11 @@ export class ProfilComponent implements OnInit {
     localStorage.setItem('modele',modele);
     localStorage.setItem('carburant',carburant);
     localStorage.setItem('annee',annee);
-    this.router.navigate(["/note"]);
+    this.router.navigate(["/map"]);
   }
 
-  goToPlace(adress: string, latitude:string, longitude:string){
+  goToPlace(id:string,adress: string, latitude:string, longitude:string){
+    localStorage.setItem('idPlace',id);
     localStorage.setItem("adress", adress);
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);

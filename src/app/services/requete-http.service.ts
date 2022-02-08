@@ -4,6 +4,7 @@ import {environment} from "../../environments/environment";
 import {Place} from "../models/place";
 import {Observable} from "rxjs";
 import {Utilisateur} from "../models/utilisateur";
+import {END} from "@angular/cdk/keycodes";
 const    ENDPOINT = environment.endpoint;
 @Injectable({
   providedIn: 'root'
@@ -66,5 +67,9 @@ export class RequeteHTTPService {
 
   getPollutionByLatLong(latitude:string,longitude:string): Observable<any>{
     return this.http.get<any>(ENDPOINT + "pollution?latitude="+latitude+"&longitude="+longitude);
+  }
+
+  getNote(co2Station:string,co2Vehicule:string): Observable<any>{
+    return this.http.get<any>(ENDPOINT + 'note?carCO2='+co2Vehicule+'&airCO2='+co2Station);
   }
 }

@@ -16,12 +16,11 @@ body{
   align-items: center;
   min-height: 100vh;
   font-family: 'Jost', sans-serif;
-  background: linear-gradient(to bottom, #A6C4DE, #4A86D3, #A6C4DE);
 }
 
 select {
   width: 60%;
-  background: #e0dede;
+  background: black;
   justify-content: center;
   display: flex;
   margin: 20px auto;
@@ -44,7 +43,7 @@ fieldset{
 input{
   width: 60%;
   height: 20px;
-  background: #e0dede;
+  background: black;
   justify-content: center;
   display: flex;
   margin: 20px auto;
@@ -59,7 +58,7 @@ button{
   margin: 10px auto;
   justify-content: center;
   display: block;
-  color: #fff;
+  color: white;
   background: #26437E;
   font-size: 1em;
   font-weight: bold;
@@ -93,7 +92,7 @@ table {
 th, td {
   padding: 15px;
   background-color: rgba(255,255,255,0.2);
-  color: #fff;
+  color: black;
 }
 
 th {
@@ -110,7 +109,7 @@ tbody {
 }
 
 tr:hover{
-  background-color: rgba(255,255,255,0.3);
+  background-color: darkgrey;
 }
 
 td{
@@ -135,5 +134,5 @@ td:before{
 }
 
 h1,h2,h3,h4{
-  color: white;
+  color: black;
 }
