@@ -86,9 +86,11 @@ export class ProfilComponent implements OnInit {
     this.router.navigate(["/note"]);
   }
 
-  goToPlace(id: string){
-    localStorage.setItem("place", id);
-    this.router.navigate(["/monVehicule"]);
+  goToPlace(adress: string, latitude:string, longitude:string){
+    localStorage.setItem("adress", adress);
+    localStorage.setItem("latitude", latitude);
+    localStorage.setItem("longitude", longitude);
+    this.router.navigate(["/monVehicule"])
   }
 
   favoris(id: any): boolean{

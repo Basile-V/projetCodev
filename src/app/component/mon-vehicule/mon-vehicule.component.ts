@@ -145,10 +145,6 @@ export class MonVehiculeComponent implements OnInit {
     // @ts-ignore
     this.unVS.addMonVehicule(idUser, idCar,codeUser).subscribe(
       reponse=>{
-        if(this.favoriControl.value=="Oui"){
-          // @ts-ignore
-          this.addVehiculeFavori(idUser,idCar,codeUser);
-        }
         console.log(reponse);
       },
       error =>{
@@ -161,11 +157,14 @@ export class MonVehiculeComponent implements OnInit {
     this.unVS.addVehiculeFavori(idUser,idCar,codeUser).subscribe(
       reponse=>{
         console.log(reponse);
-        localStorage.removeItem('idCar');
       },
       error=>{
         console.log(error);
       }
     )
+  }
+
+  redirectFavoriCars():void{
+    this.router.navigate(['/vehiculeFavoris'])
   }
 }

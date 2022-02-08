@@ -2,8 +2,9 @@
   width: 100%;
   display: flex;
   align-content: space-between;
-  height: 8%;
-  background-color: #26437E;
+  height: 8%;background-color: #8BC6EC;
+  background-image: linear-gradient(135deg, #26437E 0%, #56779F 100%);
+
 }
 
 #headerLeft{

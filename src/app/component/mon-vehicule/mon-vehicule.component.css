@@ -1,7 +1,7 @@
 .main{
   width: 650px;
   height: 650px;
-  overflow: hidden;
+  overflow: auto  ;
   border-radius: 10px;
   box-shadow: 5px 20px 50px #000;
   text-align: center;

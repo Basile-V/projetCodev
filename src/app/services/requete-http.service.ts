@@ -63,4 +63,8 @@ export class RequeteHTTPService {
   changeFavoris(userId: any, placeId: any, code: any): Observable<any>{
     return this.http.put<Utilisateur>(ENDPOINT + "places/changeFavorite/" + userId+ "?place_id=" + placeId + "&code=" + code, null);
   }
+
+  getPollutionByLatLong(latitude:string,longitude:string): Observable<any>{
+    return this.http.get<any>(ENDPOINT + "pollution?latitude="+latitude+"&longitude="+longitude);
+  }
 }
