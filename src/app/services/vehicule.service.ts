@@ -76,4 +76,10 @@ export class VehiculeService {
     this.vehiculeUrl=ENDPOINT+'car_pollution/annees';
     return this.httpVehicule.get(this.vehiculeUrl,{params});
   }
+
+  getPollutionByModel(modele:string): Observable<any>{
+    this.vehiculeUrl=ENDPOINT+"car_pollution/getPollution?designation_car=";
+    return this.httpVehicule.get(this.vehiculeUrl +modele);
+  }
+
 }

@@ -40,20 +40,15 @@
         </option>
       </select>
     </fieldset>
-    <fieldset>
-      <label class="form-label">Véhicule favori:</label>
-      <select matInput id="favori" type="text" [formControl]="favoriControl" required="required">
-        <option value="Oui">Oui</option>
-        <option value="Non">Non</option>
-
-      </select>
-    </fieldset>
     <div class="col-lg-12">
       <fieldset>
         <button class="main-button">Rechercher</button>
       </fieldset>
     </div>
   </form>
+  <fieldset>
+    <button (click)="redirectFavoriCars()" class="main-button">Mes véhicules favoris</button>
+  </fieldset>
 </div>
 </body>
 </html>

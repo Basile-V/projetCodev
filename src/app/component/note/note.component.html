@@ -27,9 +27,38 @@
         <td>Année</td>
         <td>{{vehicule.annee}}</td>
       </tr>
+      <tr>
+        <td>Emission de C02</td>
+        <td>{{co2_emission}}</td>
+      </tr>
     </table><br>
-    <button class="w3-button w3-dark-grey" onclick="self.location.href='' +
-     'http://localhost:4200/monVehicule'">Changer de véhicule  <i class="fa fa-arrow-right"></i></button>
+    <button class="w3-button w3-dark-grey" (click)="addFavVehicule()">Ajouter aux favoris  <i class="fa fa-arrow-right"></i></button><br/><br/>
+    <button class="w3-button w3-dark-grey" (click)="changerVehicule()">Changer de véhicule  <i class="fa fa-arrow-right"></i></button>
+    <article class="content"></article>
+  </div>
+
+  <div class="w3-container">
+    <h5>Votre emplacemement</h5>
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+      <tr>
+        <td>Ville</td>
+        <td>{{adress}}</td>
+      </tr>
+      <tr>
+        <td>Latitude</td>
+        <td>{{latitude}}</td>
+      </tr>
+      <tr>
+        <td>Longitude</td>
+        <td>{{longitude}}</td>
+      </tr>
+      <tr>
+        <td>Taux C02 actuel</td>
+        <td>{{co2_emissionStation}}</td>
+      </tr>
+    </table><br>
+    <button class="w3-button w3-dark-grey" (click)="addFavStations()">Ajouter aux favoris  <i class="fa fa-arrow-right"></i></button><br/><br/>
+    <button class="w3-button w3-dark-grey" (click)="changerLocalisation()">Changer d'emplacement  <i class="fa fa-arrow-right"></i></button>
   </div>
 
   <div class="w3-container">
