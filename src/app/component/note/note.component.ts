@@ -59,7 +59,7 @@ export class NoteComponent implements OnInit {
     this.getNearestPollution(latitude, longitude)
     // @ts-ignore
     this.getPollutionByModel(modele);
-    this.getNote()
+//    this.getNote()
   }
 
   getNearestPollution(latitude: string, longitude: string): void {
@@ -148,5 +148,34 @@ export class NoteComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  calculerNote():void{
+    console.log(localStorage)
+    let carCO2 = localStorage.getItem('co2_emission_car');
+    let airCO2 = localStorage.getItem('co2_emission_station');
+    console.log(carCO2);
+    console.log(airCO2);
+    // @ts-ignore
+    this.service.getNote(carCO2, airCO2).subscribe(
+      reponse => {
+        this.note = reponse['note'];
+        // @ts-ignore
+        if(<number>this.note<30){
+          this.conseil="Ne prenez pas votre voiture, il est préférable de prendre les transports en commun.";
+        }else { // @ts-ignore
+          if(<number>this.note>=30 && <number>this.note <=65){
+            this.conseil="Vous pouvez prendre votre voiture, mais privilégiez les transports en commun." +
+              " Pensez covoiturage";
+          }else{
+            this.conseil="Vous pouvez prendre votre voiture";
+          }
+        }
+        console.log(this.note);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }
