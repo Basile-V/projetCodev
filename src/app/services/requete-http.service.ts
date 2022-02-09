@@ -69,7 +69,7 @@ export class RequeteHTTPService {
     return this.http.get<any>(ENDPOINT + "pollution?latitude="+latitude+"&longitude="+longitude);
   }
 
-  getNote(co2Station:string,co2Vehicule:string): Observable<any>{
+  getNote(co2Vehicule:string,co2Station:string): Observable<any>{
     return this.http.get<any>(ENDPOINT + 'note?carCO2='+co2Vehicule+'&airCO2='+co2Station);
   }
 }

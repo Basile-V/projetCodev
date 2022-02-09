@@ -80,7 +80,10 @@ export class ProfilComponent implements OnInit {
     localStorage.setItem('carburant',carburant);
     localStorage.setItem('annee',annee);
     localStorage.setItem("button", String(true));
-    this.router.navigate(["/map"]);
+    if (localStorage.getItem("idPlace") == null)
+      this.router.navigate(["/map"]);
+    else
+      this.router.navigate(["/note"]);
   }
 
   goToPlace(id:string,adress: string, latitude:string, longitude:string){
@@ -88,7 +91,10 @@ export class ProfilComponent implements OnInit {
     localStorage.setItem("adress", adress);
     localStorage.setItem("latitude", latitude);
     localStorage.setItem("longitude", longitude);
-    this.router.navigate(["/monVehicule"])
+    if (localStorage.getItem("marque") == null)
+      this.router.navigate(["/monVehicule"])
+    else
+      this.router.navigate(["/note"]);
   }
 
   favoris(id: any): boolean{

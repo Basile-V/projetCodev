@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  endpoint : 'http://localhost:8080/'
-  //endpoint : "https://codev-voiture.herokuapp.com/"
+  // endpoint : 'http://localhost:8080/'
+  endpoint : "https://codev-voiture.herokuapp.com/"
 };
 
 /*

@@ -25,6 +25,7 @@ export class ConnexionComponent implements OnInit {
   conn_passworControl: FormControl = new FormControl('', [Validators.required, Validators.email]);
 
   ngOnInit(): void {
+    localStorage.clear()
     this.containerStyle = 'container';
     this.loginForm = new FormGroup({
       nomUtil: this.nomControl,

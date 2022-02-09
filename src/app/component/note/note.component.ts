@@ -3,6 +3,7 @@ import {VehiculeService} from "../../services/vehicule.service";
 import {Router} from "@angular/router";
 import {Vehicule} from "../../models/vehicule";
 import {RequeteHTTPService} from "../../services/requete-http.service";
+import {delay} from "rxjs";
 
 @Component({
   selector: 'app-note',
@@ -55,10 +56,10 @@ export class NoteComponent implements OnInit {
     // @ts-ignore
     this.longitude = longitude;
     // @ts-ignore
-    this.getNearestPollution(latitude, longitude);
+    this.getNearestPollution(latitude, longitude)
     // @ts-ignore
     this.getPollutionByModel(modele);
-    this.getNote();
+    this.getNote()
   }
 
   getNearestPollution(latitude: string, longitude: string): void {
@@ -66,7 +67,7 @@ export class NoteComponent implements OnInit {
       reponse => {
         console.log("NearestPollution");
         this.co2_emissionStation = reponse['values']['no2']['v'];
-        localStorage.setItem('co2_emission_station', this.co2_emission);
+        localStorage.setItem('co2_emission_station', this.co2_emissionStation);
       }
     )
   }
@@ -121,6 +122,7 @@ export class NoteComponent implements OnInit {
   }
 
   getNote(): void {
+    console.log(localStorage)
     let carCO2 = localStorage.getItem('co2_emission_car');
     let airCO2 = localStorage.getItem('co2_emission_station');
     console.log(carCO2);
@@ -130,13 +132,14 @@ export class NoteComponent implements OnInit {
       reponse => {
         this.note = reponse['note'];
         // @ts-ignore
-        if(<number>this.note<50){
-          this.conseil="Vous pouvez prendre votre véhicule.";
+        if(<number>this.note<30){
+          this.conseil="Ne prenez pas votre voiture, il est préférable de prendre les transports en commun.";
         }else { // @ts-ignore
-          if(<number>this.note>=50 ||<number>this.note<=100){
-            this.conseil="La qualité de l'air est normale, vous pouvez prendre votre véhicule.";
-                  }else{
-            this.conseil="La qualité de l'air est mauvaise, ne prenez pas votre véhicule";
+          if(<number>this.note>=30 && <number>this.note <=65){
+            this.conseil="Vous pouvez prendre votre voiture, mais privilégiez les transports en commun." +
+              " Pensez covoiturage";
+          }else{
+            this.conseil="Vous pouvez prendre votre voiture";
           }
         }
         console.log(this.note);

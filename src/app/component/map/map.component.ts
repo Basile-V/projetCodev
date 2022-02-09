@@ -64,7 +64,8 @@ export class MapComponent implements AfterViewInit {
       this.loadStat(+localStorage.getItem("place"), true);
       localStorage.removeItem("place");
     }
-    if(localStorage.getItem("button") == String(true)){
+    if(localStorage.getItem("button") == String(true) || localStorage.getItem("idCar") != null){
+      console.log(localStorage)
       this.showButton = true;
     } else{
       this.showButton = false;
@@ -103,7 +104,8 @@ export class MapComponent implements AfterViewInit {
     this.otherDays = new Map();
     this.service.getPollution(id).subscribe(data => {
       this.city = data["city"];
-      localStorage.setItem('idPlace', data["id"]);
+      console.log(data)
+      localStorage.setItem('idPlace', id.toString());
       localStorage.setItem('adress', data["city"]);
       localStorage.setItem('latitude', data["latitude"]);
       localStorage.setItem('longitude', data["longitude"]);
@@ -150,6 +152,7 @@ export class MapComponent implements AfterViewInit {
         this.dates.push(lastValue[i]["day"]);
       }
     });
+    console.log(localStorage)
   }
 
   printStat(val: any, selected: number){
