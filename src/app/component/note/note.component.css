@@ -21,4 +21,9 @@ label{
 }
 
 body{
-  overflow: auto;}
+  overflow: auto;
+}
+
+.w3-light-grey{
+  padding-top: initial;
+}
