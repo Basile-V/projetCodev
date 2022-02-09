@@ -2,53 +2,56 @@
 <app-header></app-header>
 <section class="scroller">
 <div class="main">
-  <form id="search-form" name="gs" method="submit" role="search" [formGroup]="choixVehiculeForm"
-        (ngSubmit)="chercherVehicule()">
-    <fieldset>
-      <label class="form-label">Marque du véhicule :</label>
-      <select matInput (change)="validerMarque()" id="vehicule" type="text" [formControl]="marqueControl" required="required">
-        <option value="" disabled selected>Selectionner votre véhicule</option>
-        <option *ngFor="let marque of marqueTable" [value]="marque.toString()">
-          {{marque.toString()}}
-        </option>
-      </select>
-    </fieldset>
-    <fieldset>
-      <label class="form-label">Modele du véhicule :</label>
-      <select matInput (change)="validerModele()" id="modele" type="text" [formControl]="modelControl" required="required">
-        <option value="" disabled selected>Selectionner votre modele</option>
-        <option *ngFor="let modele of modeleTable" [value]="modele.toString()">
-          {{modele.toString()}}
-        </option>
-      </select>
-    </fieldset>
-    <fieldset>
-      <label class="form-label">Carburant du véhicule :</label>
-      <select matInput (change)="validerCarburant()" id="carburant" type="text" [formControl]="carburantControl" required="required">
-        <option value="" disabled selected>Selectionner votre carburant</option>
-        <option *ngFor="let carburant of carburantTable" [value]="carburant.toString()">
-          {{carburant.toString()}}
-        </option>
-      </select>
-    </fieldset>
-    <fieldset>
-      <label class="form-label">Année du véhicule :</label>
-      <select matInput id="annee" type="text" [formControl]="anneeControl" required="required">
-        <option value="" disabled selected>Selectionner votre annee</option>
-        <option *ngFor="let annee of anneeTable" [value]="annee.toString()">
-          {{annee.toString()}}
-        </option>
-      </select>
-    </fieldset>
-    <div class="col-lg-12">
+    <form id="search-form" name="gs" method="submit" role="search" [formGroup]="choixVehiculeForm"
+          (ngSubmit)="chercherVehicule()">
       <fieldset>
-        <button class="main-button">Rechercher</button>
+        <label class="form-label">Marque du véhicule :</label>
+        <select matInput (change)="validerMarque()" id="vehicule" type="text" [formControl]="marqueControl" required="required">
+          <option value="" disabled selected>Selectionner votre véhicule</option>
+          <option *ngFor="let marque of marqueTable" [value]="marque.toString()">
+            {{marque.toString()}}
+          </option>
+        </select>
       </fieldset>
-    </div>
-  </form>
-  <fieldset>
-    <button (click)="redirectFavoriCars()" class="main-button">Mes véhicules favoris</button>
-  </fieldset>
+      <fieldset>
+        <label class="form-label">Modele du véhicule :</label>
+        <select matInput (change)="validerModele()" id="modele" type="text" [formControl]="modelControl" required="required">
+          <option value="" disabled selected>Selectionner votre modele</option>
+          <option *ngFor="let modele of modeleTable" [value]="modele.toString()">
+            {{modele.toString()}}
+          </option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <label class="form-label">Carburant du véhicule :</label>
+        <select matInput (change)="validerCarburant()" id="carburant" type="text" [formControl]="carburantControl" required="required">
+          <option value="" disabled selected>Selectionner votre carburant</option>
+          <option *ngFor="let carburant of carburantTable" [value]="carburant.toString()">
+            {{carburant.toString()}}
+          </option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <label class="form-label">Année du véhicule :</label>
+        <select matInput id="annee" type="text" [formControl]="anneeControl" required="required">
+          <option value="" disabled selected>Selectionner votre annee</option>
+          <option *ngFor="let annee of anneeTable" [value]="annee.toString()">
+            {{annee.toString()}}
+          </option>
+        </select>
+      </fieldset>
+      <div class="col-lg-12">
+        <fieldset>
+          <button class="main-button">Rechercher</button>
+          <button (click)="redirectFavoriCars()" class="main-button">Mes véhicules favoris</button>
+        </fieldset>
+      </div>
+      <div class="col-lg-12">
+        <fieldset>
+
+        </fieldset>
+      </div>
+    </form>
 </div>
 </section>
 </html>
