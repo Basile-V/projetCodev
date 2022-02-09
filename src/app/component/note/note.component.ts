@@ -113,6 +113,9 @@ export class NoteComponent implements OnInit {
     this.service.changeFavoris(localStorage.getItem('idUser'), this.idPlace, localStorage.getItem('codeUser')).subscribe(
       reponse =>{
         alert('Station ajouté au favoris');
+      },
+      error =>{
+        alert('Erreur ajout de la station: '+error);
       }
     );
   }

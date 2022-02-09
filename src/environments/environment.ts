@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
-  // endpoint : 'http://localhost:8080/'
-  endpoint : "https://codev-voiture.herokuapp.com/"
+  production: false,
+  endpoint : 'http://localhost:8080/'
+  //endpoint : "https://codev-voiture.herokuapp.com/"
 };
 
 /*
