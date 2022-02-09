@@ -61,8 +61,12 @@ export class RequeteHTTPService {
     return this.http.post<Utilisateur>(ENDPOINT + "places/user/add/" + userId+ "?place_id=" + placeId + "&code=" + code, null);
   }
 
-  changeFavoris(userId: any, placeId: any, code: any): Observable<any>{
+  changeFavorisPlaces(userId: any, placeId: any, code: any): Observable<any>{
     return this.http.put<Utilisateur>(ENDPOINT + "places/changeFavorite/" + userId+ "?place_id=" + placeId + "&code=" + code, null);
+  }
+
+  changeFavorisCars(userId: any, placeId: any, code: any): Observable<any>{
+    return this.http.put<Utilisateur>(ENDPOINT + "cars/changeFavorite/" + userId+ "?car_id=" + placeId + "&code=" + code, null);
   }
 
   getPollutionByLatLong(latitude:string,longitude:string): Observable<any>{

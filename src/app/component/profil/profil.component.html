@@ -63,16 +63,21 @@
           <th>Carburant</th>
           <th>Année</th>
           <th>Rejoindre</th>
+          <th>Favoris</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let car of lastCars">
+        <tr *ngFor="let car of lastCars; let i = index">
           <td>{{car.modele}}</td>
           <td>{{car.marque}}</td>
           <td>{{car.carburant}}</td>
           <td>{{car.annee}}</td>
           <td (click)="goToCar(car.modele,car.marque,car.carburant,car.annee)">
             <mat-icon>arrow_right_alt</mat-icon>
+          </td>
+          <td (click)="changeFavorisCars(car.id, i)">
+            <mat-icon *ngIf="!favorisCars(car.id)">favorite_border</mat-icon>
+            <mat-icon *ngIf="favorisCars(car.id)">favorite</mat-icon>
           </td>
         </tr>
         </tbody>
@@ -98,9 +103,9 @@
           <td (click)="goToPlace(place.id,place.address,place.latitude,place.longitude)">
             <mat-icon>arrow_right_alt</mat-icon>
           </td>
-          <td (click)="changeFavoris(place.id, i)">
-            <mat-icon *ngIf="!favoris(place.id)">favorite_border</mat-icon>
-            <mat-icon *ngIf="favoris(place.id)">favorite</mat-icon>
+          <td (click)="changeFavorisPlaces(place.id, i)">
+            <mat-icon *ngIf="!favorisPlaces(place.id)">favorite_border</mat-icon>
+            <mat-icon *ngIf="favorisPlaces(place.id)">favorite</mat-icon>
           </td>
         </tr>
         </tbody>

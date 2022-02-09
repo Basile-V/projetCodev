@@ -111,7 +111,7 @@ export class NoteComponent implements OnInit {
   }
 
   addFavStations(): void {
-    this.service.changeFavoris(localStorage.getItem('idUser'), this.idPlace, localStorage.getItem('codeUser')).subscribe(
+    this.service.changeFavorisPlaces(localStorage.getItem('idUser'), this.idPlace, localStorage.getItem('codeUser')).subscribe(
       reponse =>{
         alert('Station ajouté au favoris');
       },

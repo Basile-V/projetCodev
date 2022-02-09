@@ -184,7 +184,7 @@ export class MapComponent implements AfterViewInit {
       }
     }
     if(find){
-      this.service.changeFavoris(localStorage.getItem('idUser'), id, localStorage.getItem('codeUser')).subscribe( data => {
+      this.service.changeFavorisPlaces(localStorage.getItem('idUser'), id, localStorage.getItem('codeUser')).subscribe( data => {
         if(this.idFav.has(+id)){
           this.idFav.delete(+id);
         } else{
@@ -193,7 +193,7 @@ export class MapComponent implements AfterViewInit {
       });
     } else{
       this.service.addUserPlace(localStorage.getItem("idUser"), id, localStorage.getItem("codeUser")).subscribe(reponse => {
-        this.service.changeFavoris(localStorage.getItem('idUser'), id, localStorage.getItem('codeUser')).subscribe( data => {
+        this.service.changeFavorisPlaces(localStorage.getItem('idUser'), id, localStorage.getItem('codeUser')).subscribe( data => {
           if(this.idFav.has(+id)){
             this.idFav.delete(+id);
           } else{
