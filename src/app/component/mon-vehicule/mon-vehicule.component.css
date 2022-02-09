@@ -79,3 +79,10 @@ button{
 button:hover{
   background: #56779F;
 }
+
+.scroller {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
